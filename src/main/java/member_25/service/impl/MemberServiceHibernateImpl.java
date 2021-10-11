@@ -29,7 +29,7 @@ public class MemberServiceHibernateImpl implements MemberService {
 	}
 
 	@Override
-	public void save(MemberBean mb) {
+	public void save(membershipInformationBean mb) {
 //		MemberDao dao = new MemberJdbcDaoImpl();
 		dao.save(mb);
 	}
@@ -50,8 +50,13 @@ public class MemberServiceHibernateImpl implements MemberService {
 	}
 
 	@Override
-	public void update(MemberBean mb) {
+	public void update(membershipInformationBean mb) {
 		dao.update(mb);
+	}
+
+	@Override   //下拉選單
+	public List<membershipInformationBean> getIdentificationList() {
+		return dao.getIdentificationList();
 	}
 
 }

@@ -8,7 +8,7 @@ public interface MemberDao {
 
 	boolean existsById(String id);
 
-	void save(MemberBean mb);
+	void save(membershipInformationBean mb);
 
 	List<MemberBean> findAll();
 
@@ -16,6 +16,9 @@ public interface MemberDao {
 
 	void delete(int pk);
 
-	void update(MemberBean mb);
+	void update(membershipInformationBean mb);
+	
+	//前置下拉選單 
+		List<membershipInformationBean>  getIdentificationList();
 
 }

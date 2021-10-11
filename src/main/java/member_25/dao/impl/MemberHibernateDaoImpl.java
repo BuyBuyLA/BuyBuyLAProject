@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import member_25.dao.MemberDao;
 import member_25.model.MemberBean;
+import member_25.model.membershipInformationBean;
 
 //實作介面或繼承父類別,程式使用時直接寫父類別/介面名稱
 @Repository
@@ -56,7 +57,7 @@ public class MemberHibernateDaoImpl implements MemberDao  {
 	}
 
 	@Override
-	public void save(MemberBean mb) {
+	public void save(membershipInformationBean mb) {
 		Session session = factory.getCurrentSession();
 		session.save(mb);
 	}
@@ -86,8 +87,19 @@ public class MemberHibernateDaoImpl implements MemberDao  {
 	}
 
 	@Override
-	public void update(MemberBean mb) {
+	public void update(membershipInformationBean mb) {
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(mb);
+	}
+
+	//前置的下拉選單
+	@Override
+	public List<membershipInformationBean> getIdentificationList() {
+		Session session = factory.getCurrentSession();
+		System.out.println("前置的下拉選單功能在此 getIdentificationList");
+	    String hql = "FROM MembershipInformationBean";
+	    List<membershipInformationBean> list = session.createQuery(hql, membershipInformationBean.class)
+	    		                        .getResultList();
+	    return list;
 	}
 }

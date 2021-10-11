@@ -28,7 +28,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 		//視圖解析器->會用依照『字首+視圖代名+字尾』的公式
 		//如得到 "/WEB-INF/views/XXXX.jsp"，
 		InternalResourceViewResolver resolver=new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/views/"); //  /WEB-INF/前導字串 大家通常都會這樣用 
+		resolver.setPrefix("/WEB-INF/views/member_25/"); //  /WEB-INF/前導字串 大家通常都會這樣用 
 												//   views/一定要有/ 不然一定會出錯 因為變成(/WEB-INF/viewsjsp)
 		resolver.setSuffix(".jsp");  //後綴字  尾巴會加的字串
 		
