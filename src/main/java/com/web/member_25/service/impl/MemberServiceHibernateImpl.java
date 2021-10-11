@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.member_25.dao.MemberDao;
+import com.web.member_25.model.MemberBean;
+import com.web.member_25.model.membershipInformationBean;
+import com.web.member_25.service.MemberService;
 
 
-import com.web.member_25.dao.*;
-import com.web.member_25.model.*;
-import com.web.member_25.service.*;
+
 
 @Transactional
 @Service
@@ -29,7 +31,7 @@ public class MemberServiceHibernateImpl implements MemberService {
 	}
 
 	@Override
-	public void save(MemberBean mb) {
+	public void save(membershipInformationBean mb) {
 //		MemberDao dao = new MemberJdbcDaoImpl();
 		dao.save(mb);
 	}
@@ -40,8 +42,8 @@ public class MemberServiceHibernateImpl implements MemberService {
 	}
 
 	@Override
-	public MemberBean findById(int pk) {
-		return dao.findById(pk);
+	public membershipInformationBean findById(int id) {
+		return dao.findById(id);
 	}
 
 	@Override
@@ -50,8 +52,19 @@ public class MemberServiceHibernateImpl implements MemberService {
 	}
 
 	@Override
-	public void update(MemberBean mb) {
+	public void update(membershipInformationBean mb) {
 		dao.update(mb);
 	}
+
+	@Override
+	public boolean login(String userEmail, String userPwd) {
+		return dao.login(userEmail, userPwd);
+		
+	}
+
+//	@Override   //下拉選單
+//	public List<membershipInformationBean> getIdentificationList() {
+//		return dao.getIdentificationList();
+//	}
 
 }
