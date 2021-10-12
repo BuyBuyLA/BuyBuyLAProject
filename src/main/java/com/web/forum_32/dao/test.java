@@ -1,4 +1,4 @@
-package com.web.forum.dao;
+package com.web.forum_32.dao;
 
 public class test {
 

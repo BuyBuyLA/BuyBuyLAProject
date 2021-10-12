@@ -1,4 +1,4 @@
-package com.web.forum.controller;
+package com.web.forum_32.controller;
 
 public class test {
 

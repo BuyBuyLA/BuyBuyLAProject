@@ -1,4 +1,4 @@
-package com.web.forum.model;
+package com.web.forum_32.model;
 
 public class test {
 

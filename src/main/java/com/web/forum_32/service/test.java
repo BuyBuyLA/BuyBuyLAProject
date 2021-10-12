@@ -1,4 +1,4 @@
-package com.web.forum.service;
+package com.web.forum_32.service;
 
 public class test {
 
