@@ -1,4 +1,4 @@
-package com.web.groupbuying_32.model;
+package com.web.forum.controller;
 
 public class test {
 

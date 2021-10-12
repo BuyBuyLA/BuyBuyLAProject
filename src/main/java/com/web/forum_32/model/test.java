@@ -1,4 +1,4 @@
-package com.web.groupbuying_32.dao;
+package com.web.forum.model;
 
 public class test {
 
