@@ -29,42 +29,63 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> getAllProducts() {
 		Session session=factory.getCurrentSession();
 		String hql="from Product";
-		return session.createQuery(hql, Product.class).getResultList();
+		return session.createQuery(hql, Product.class)
+				.getResultList();
 	}
 
 	//查詢商品類別
 	@Override
 	public List<String> getAllCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session=factory.getCurrentSession();
+		String hql="select distinct category from Product";
+		return session.createQuery(hql, String.class)
+				.getResultList();
 	}
 
 	//獲取類別商品
 	@Override
 	public List<Product> getProductsByCategory(String category) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session=factory.getCurrentSession();
+		String hql="from Product p where p.category=:cate";
+		
+		return session.createQuery(hql,Product.class)
+				.setParameter("cate",category)
+				.getResultList();
 	}
 
-	//ID查詢商品
+	//依主鍵查詢商品
 	@Override
 	public Product getProductById(int productId) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session=factory.getCurrentSession();
+		return session.get(Product.class, productId);
 	}
 
 	//新增商品
 	@Override
 	public void addProduct(Product product) {
-		// TODO Auto-generated method stub
-
+		Session session=factory.getCurrentSession();
+		session.save(product);
 	}
 	
 	//更新商品
 	@Override
 	public void updateProduct(int productId, Product product) {
-		// TODO Auto-generated method stub
-		
+		Session session=factory.getCurrentSession();
+		Product pBean = session.get(Product.class, productId);
+		if(pBean ==null) {
+			session.update(product);
+		}else {
+			session.save(product);
+		}
+	}
+	
+	//依商品名稱查詢
+	@Override
+	public List<Product> getProductByName(String name) {
+		Session session=factory.getCurrentSession();
+		String hql="from Product where productName like '%"+name+"%'";
+		return session.createQuery(hql, Product.class)
+					.getResultList();
 	}
 	
 }

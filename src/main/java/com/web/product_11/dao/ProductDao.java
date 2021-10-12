@@ -10,11 +10,14 @@ import com.web.product_11.model.Product;
 public interface ProductDao {
 	//查詢全部商品
 	List<Product>  getAllProducts(); 
+	
+	//依商品名稱查詢商品
+	List<Product> getProductByName(String name);
 		
 	//查詢商品類別
 	List<String>  getAllCategories();
 	
-	//獲取類別商品
+	//依類別查詢商品
 	List<Product>  getProductsByCategory(String category);
 	
 	//ID查詢商品

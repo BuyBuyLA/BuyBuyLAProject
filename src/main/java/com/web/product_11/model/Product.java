@@ -27,33 +27,31 @@ public class Product implements Serializable {
 	private Integer stock;
 	private String productInfo;
 	private String productNo;
+	private String fileName;
 	
 	@Transient
 	private MultipartFile productImage;
 	private Blob coverImage;
 	
-//	private Integer companyId;
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "FK_CompanyBean_Id")
-//	private CompanyBean companyBean;
-	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(Integer productId, String productName, Double price, String category, Integer stock, String productInfo,
-		String productNo, MultipartFile productImage, Blob coverImage) {
-	super();
-	this.productId = productId;
-	this.productName = productName;
-	this.price = price;
-	this.category = category;
-	this.stock = stock;
-	this.productInfo = productInfo;
-	this.productNo = productNo;
-	this.productImage = productImage;
-	this.coverImage = coverImage;
-}
+
+	public Product(Integer productId, String productName, Double price, String category, Integer stock,
+			String productInfo, String productNo, String fileName, MultipartFile productImage, Blob coverImage) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.price = price;
+		this.category = category;
+		this.stock = stock;
+		this.productInfo = productInfo;
+		this.productNo = productNo;
+		this.fileName = fileName;
+		this.productImage = productImage;
+		this.coverImage = coverImage;
+	}
 
 
 	public Integer getProductId() {
@@ -128,5 +126,17 @@ public class Product implements Serializable {
 		this.productNo = productNo;
 	}
 
+
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	
+	
 
 }
