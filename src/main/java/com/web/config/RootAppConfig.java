@@ -22,13 +22,13 @@ public class RootAppConfig {
 	    public DataSource dataSource() {
 	        ComboPooledDataSource ds = new ComboPooledDataSource();
 	        ds.setUser("sa");
-	        ds.setPassword("password");
+	        ds.setPassword("zxcv265358");
 	        try {
 	            ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	        } catch (PropertyVetoException e) {
 	            e.printStackTrace();
 	        }
-	        ds.setJdbcUrl("jdbc:sqlserver://MSI\\SQLEXPRESS:1433;databaseName=JSPDB");
+	        ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=shopping");
 	        ds.setInitialPoolSize(4);
 	        ds.setMaxPoolSize(8);
 	        return ds;
@@ -40,7 +40,7 @@ public class RootAppConfig {
 	        LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 	        factory.setDataSource(dataSource());
 	        factory.setPackagesToScan(new String[] {
-	                    "com.web.store.model"
+	                    "com.web"
 	                });
 	        factory.setHibernateProperties(additionalProperties());
 	        return factory;

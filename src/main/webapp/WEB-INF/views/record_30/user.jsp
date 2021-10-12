@@ -1,62 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-body {
-	font-family: "微軟正黑體";
-	background-color: rgb(203, 218, 218);
-	align-items: center;
-	justify-content: center;
-	position: relative;
-}
+    div{
+        display: flex;
+        width:360px;
+        border: lightblue 3px solid;
+        margin:0  auto;
+    }
 
-div {
-	display: flex;
-	width: 360px;
-	border: lightblue 3px solid;
-	margin: 0 auto;
-}
 </style>
 </head>
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-	crossorigin="anonymous" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <body>
-	<h1 ALIGN="center">購物記錄管理</h1>
-	<div>
-		<form action=".\UserServlet" method="post">
+    <h1 ALIGN="center">購物記錄管理</h1>
+    <div>
+     <a href="<c:url value='/select' />">
+            <button class='btn btn-default' type='submit' value='submit' style="width:120px;height:50px;font-size:30px;">
+                <i class="fas fa-search"></i>查詢
+            </button>
 
-			<button class='btn btn-default' name="select" type='submit'
-				value='submit' style="width: 120px; height: 50px; font-size: 30px;">
-				<i class="fas fa-search"></i>查詢
-			</button>
-
-		</form>
-
+    </a> 
+ 
 
 
-		<form action=".\update.jsp" method="post">
+     <a href="<c:url value='/update' />">
 
-			<button class='btn btn-default' type='submit' value='submit'
-				style="width: 120px; height: 50px; font-size: 30px;">
-				<i class="fas fa-pencil-alt"></i>修改
-			</button>
+            <button class='btn btn-default' type='submit' value='submit' style="width:120px;height:50px;font-size:30px;">
+                <i class="fas fa-pencil-alt"></i>修改
+            </button>
 
-		</form>
-		<form action=".\delete.jsp" method="post">
+    </a>
+    <a href="<c:url value='/delete' />">
 
-			<button class='btn btn-default' type='submit' value='submit'
-				style="width: 120px; height: 50px; font-size: 30px;">
-				<i class="fas fa-trash-alt"></i>刪除
-			</button>
+            <button class='btn btn-default' type='submit' value='submit' style="width:120px;height:50px;font-size:30px;">
+                <i class="fas fa-trash-alt"></i>刪除
+            </button>
 
-		</form>
-	</div>
+     </a>
+    </div>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,105 +55,116 @@ input, textarea, select {
 .leftSide {
 	float: left;
 }
+    .wrap {
+            text-align: center;
+            margin-top: 50px;
+        }
 
-.wrap {
-	text-align: center;
-	margin-top: 50px;
-}
+        .button {
+            width: 140px;
+            height: 45px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 500;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 45px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            outline: none;
+        }
 
-.button {
-	width: 140px;
-	height: 45px;
-	font-family: 'Roboto', sans-serif;
-	font-size: 11px;
-	text-transform: uppercase;
-	letter-spacing: 2.5px;
-	font-weight: 500;
-	color: #000;
-	background-color: #fff;
-	border: none;
-	border-radius: 45px;
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-	transition: all 0.3s ease 0s;
-	cursor: pointer;
-	outline: none;
-}
-
-.button:hover {
-	background-color: #33779e;
-	color: #fff;
-	transform: translateY(-7px);
-}
+        .button:hover {
+            background-color: #33779e;
+            color: #fff;
+            transform: translateY(-7px);
+        }
 </style>
 </head>
 <body>
+	<div style="background-color: rgb(114, 13, 69);">
+		<img src="/project2/image/trademark.png"
+			style="width: 170px; padding-bottom: 0px; margin-bottom: -55px;"
+			alt="tradeMaark">
+		<center>
+			<Input type="text"
+				style="margin-top: -10px; background-color: white; font-size: 33px; width: 780px;">
+			<input type="submit" style="font-size: 28px;" value="搜尋"></Input>
+		</center>
 
+		<hr>
+	</div>
 
 	<div class="leftSide">
 		<h1 class="p">刪除購物紀錄</h1>
 
 	</div>
 	<div>
-		<form action=".\UserServlet" method="post">
+	<form:form method='POST' modelAttribute="RecordBean" class='form-horizontal'>
+		
 			<input type="hidden" class="inputClass" name="proId" id="proId"
 				value="" />
 			<table rules="all">
 				<tr>
 					<td>請輸入要刪除的單號:</td>
-					<td><input type="text" class="inputClass" name="dpid" id="in">
-						<span id="idsp1" style="color: black;"></span> <span id="idsp2"
-						style="color: red;"></span><br /></td>
+					<td><form:input id="in" type="text"   path="record_id" class="inputClass"/> 
+						<span id="idsp1" style="color: black;"></span> 
+						<span id="idsp2" style="color: red;"></span><br /></td>
 				</tr>
 			</table>
 			<div class="wrap">
-				<a href="user.jsp"><button type="submit" name="delete"
-						class="button">確認送出</button></a>
-			</div>
-		</form>
-	</div>
-
+        <a href="<c:url value='delete2' />"><input type="submit" name="delete" class="button" value="確認送出"/></a>
+        </div>
+	
+		</form:form>
+    </div>
+		
 
 
 	<script>
-  document.getElementById("in").addEventListener('blur', check1);
+		document.getElementById("in").addEventListener('blur', check1);
 
-  function check1() {
-   let theIdObj = document.getElementById("in");
-   let theIdObjVal = theIdObj.value;
-   let sp = document.getElementById("idsp1");
-   let sp1 = document.getElementById("idsp2");
-   let theIdObjValLen = theIdObjVal.length;
-   let ch, flag1 = false;
-   if (theIdObjVal == "") {
-    flag1 = false;
-    sp.innerHTML = "you must enter";
-   } else {
+		function check1() {
+			let theIdObj = document.getElementById("in");
+			let theIdObjVal = theIdObj.value;
+			let sp = document.getElementById("idsp1");
+			let sp1 = document.getElementById("idsp2");
+			let theIdObjValLen = theIdObjVal.length;
+			let ch, flag1 = false;
+			if (theIdObjVal == "") {
+				flag1 = false;
+				sp.innerHTML = "you must enter";
+			} else {
 
-    for (let i = 0; i < theIdObjValLen; i++) {
-     ch = theIdObjVal.charAt(i);
-     console.log(ch);
-     if (ch >= '0' && ch <= '9') {
-      flag1 = true;
-      console.log(flag1);
+				for (let i = 0; i < theIdObjValLen; i++) {
+					ch = theIdObjVal.charAt(i);
+					console.log(ch);
+					if (ch >= '0' && ch <= '9') {
+						flag1 = true;
+						console.log(flag1);
 
-     } else {
-      flag1 = false;
-      console.log(flag1);
-      break;
-     }
-    }
-   }
-   if (flag1) {
-    sp.innerHTML = "OK";
-    sp1.innerHTML = "";
+					} else {
+						flag1 = false;
+						console.log(flag1);
+						break;
+					}
+				}
+			}
+			if (flag1) {
+				sp.innerHTML = "OK";
+				sp1.innerHTML = "";
 
-   } else {
-    sp1.innerHTML = "請輸入數字";
-    sp.innerHTML = "";
+			} else {
+				sp1.innerHTML = "請輸入數字";
+				sp.innerHTML = "";
 
-   }
-  }
- </script>
+			}
+		}
+	</script>
 
 
 </body>
