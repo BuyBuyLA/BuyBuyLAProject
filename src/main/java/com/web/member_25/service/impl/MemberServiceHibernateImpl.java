@@ -57,7 +57,7 @@ public class MemberServiceHibernateImpl implements MemberService {
 	}
 
 	@Override
-	public boolean login(String userEmail, String userPwd) {
+	public int login(String userEmail, String userPwd) {
 		return dao.login(userEmail, userPwd);
 		
 	}

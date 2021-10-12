@@ -23,7 +23,7 @@ public interface MemberDao {
 	
 	
 	//登入
-	boolean login(String userEmail, String userPwd);
+	int login(String userEmail, String userPwd);
 	
 //	//前置下拉選單 
 //		List<membershipInformationBean>  getIdentificationList();

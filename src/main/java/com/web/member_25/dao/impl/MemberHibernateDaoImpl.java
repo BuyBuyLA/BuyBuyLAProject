@@ -95,16 +95,11 @@ public class MemberHibernateDaoImpl implements MemberDao  {
 		session.saveOrUpdate(mb);
 	}
 	
-	public boolean login(String userEmail, String userPwd) {
+	public int login(String userEmail, String userPwd) {
         Session session = factory.getCurrentSession();
-        Boolean resultBoolean=false;
         
-        System.out.println("===================loginDAO執行中=" );
-
-        
-//        membershipInformationBean resultBean=query.
-        System.out.println("===================HQL執行完畢0" );
-        
+        int loginState=0;
+        System.out.println("===================loginDAO執行中=" );   
 
 		try {
 //			 Query query=session.createQuery(hql);
@@ -117,16 +112,16 @@ public class MemberHibernateDaoImpl implements MemberDao  {
 			 System.out.println("===================HQL執行完畢=" );
 			 
 			 System.out.println("query.getSingleResult()-------------> "+query.getSingleResult());
-		    resultBoolean = true;
+			 loginState = 1;
 		} catch(NoResultException e) {
 			System.out.println("沒帳號拉");
-			resultBoolean = false;
+			loginState = 2;
        	} catch(  NonUniqueResultException e) {
     		System.out.println("多筆帳號拉");
-       		resultBoolean = true;
+    		loginState = 3;
 		}
 		
-		return resultBoolean;
+		return loginState;
 		
         
     }

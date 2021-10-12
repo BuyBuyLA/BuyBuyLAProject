@@ -101,19 +101,30 @@ public class MemberController {
 		//設定預設值
 		mb.setUserEmail(userEmail);
 		mb.setUserPwd(userPwd);
-		System.out.println("userEmail = "+userEmail);
-		System.out.println("userPwd = "+userPwd);
-//		mb = ms.findById(pk);
-		Boolean loginResultBoolean=false;
-				memberService.login(userEmail, userPwd);
+		
+		int loginResult=0;
+		
+		loginResult=	memberService.login(userEmail, userPwd);
 		System.out.println("login結果 = "+memberService.login(userEmail, userPwd));
 		
+		
+		if (loginResult==1) {
+			System.out.println("登入成功");
+			return "首頁";
+		}else if (loginResult==2) {
+			System.out.println("沒帳號拉");
+			return "沒帳號";
+		}else if (loginResult==3) {
+			System.out.println("帳號重複");
+			return "帳號重複";
+		}
 		
 		System.out.println("userEmail = "+userEmail);
 		System.out.println("userPwd = "+userPwd);
 		System.out.println("開始------------------->findByEmail ");
 		model.addAttribute("loginSessionBean",mb);
-		return "InsertMemberSuccess";
+		
+		return "登入失敗";
 	}
 	
 	

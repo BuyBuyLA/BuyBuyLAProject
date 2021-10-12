@@ -21,7 +21,7 @@ public interface MemberService {
 
 	void update(membershipInformationBean mb);
 	
-	boolean login(String userEmail, String userPwd);
+	int login(String userEmail, String userPwd);
 	
 	
 	
