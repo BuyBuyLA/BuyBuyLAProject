@@ -18,7 +18,7 @@
 您已成功加入會員 ,謝謝
 
 </p>
-<a href='${pageContext.request.contextPath}/index.jsp'>回到會員管理</a>
+<a href='${pageContext.request.contextPath}/member_25/index.jsp'>回到會員管理</a>
 
 </body>
 </html>

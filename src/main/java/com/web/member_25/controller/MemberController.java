@@ -81,8 +81,8 @@ public class MemberController {
 	public String getMemberLogin(Model model) {
 		membershipInformationBean mb=new membershipInformationBean();
 		//設定預設值
-		mb.setUserEmail("a123@gmail.com");
-		mb.setUserPwd("a123456");
+		mb.setUserEmail("b123@gmail.com");
+		mb.setUserPwd("b123456");
 		model.addAttribute("loginSessionBeanDefault",mb);
 		return "loginPage";
 	}
@@ -90,18 +90,17 @@ public class MemberController {
 	@PostMapping("/member/login")
 	public String processMemberLogin(
 			@ModelAttribute("loginSessionBeanDefault") membershipInformationBean mb2,
-			@RequestParam("userEmail") String userEmail,
-			@RequestParam("userPwd") String userPwd,
-			
 			Model model	
 		) {
 		System.out.println("進入processMemberLogin");
-//		MemberBean mb=new MemberBean();
 		membershipInformationBean mb=new membershipInformationBean();
 		//設定預設值
-		mb.setUserEmail(userEmail);
-		mb.setUserPwd(userPwd);
+		System.out.println("Login ->userEmail="+mb2.getUserEmail());
 		
+		String userEmail=mb2.getUserEmail();
+		String userPwd=mb2.getUserPwd();
+		
+
 		int loginResult=0;
 		
 		loginResult=	memberService.login(userEmail, userPwd);
@@ -110,21 +109,66 @@ public class MemberController {
 		
 		if (loginResult==1) {
 			System.out.println("登入成功");
-			return "首頁";
+			
+			System.out.println("登入成功的 userEmail = "+userEmail);
+			System.out.println("登入成功的 userPwd = "+userPwd);
+			System.out.println("開始------------------->findByEmail ");
+			mb.setUserEmail(userEmail);
+			mb.setUserPwd(userPwd);
+			model.addAttribute("loginSessionBean",mb);
+			return "index";
 		}else if (loginResult==2) {
 			System.out.println("沒帳號拉");
-			return "沒帳號";
+			return "signupPage";
 		}else if (loginResult==3) {
 			System.out.println("帳號重複");
-			return "帳號重複";
+			return "loginPage";
 		}
 		
 		System.out.println("userEmail = "+userEmail);
 		System.out.println("userPwd = "+userPwd);
 		System.out.println("開始------------------->findByEmail ");
-		model.addAttribute("loginSessionBean",mb);
 		
-		return "登入失敗";
+		System.out.println("============登入失敗===============");
+		return "loginPage";
+	}
+	
+	
+	@GetMapping("/member/update")
+	public String getMemberUpdate(
+			@ModelAttribute("loginSessionBean") membershipInformationBean mb2,
+	
+			Model model) {
+		membershipInformationBean mb=new membershipInformationBean();
+		//設定預設值
+		  //順序 model (不用set)- 下一個post要set才會存進去(縣市再頁面) 
+		mb.setUserEmail(mb2.getUserEmail());
+		mb.setUserName(mb2.getUserName());
+		model.addAttribute("loginSessionBeanDefault",mb);
+		
+		return "member_Ui";
+	}
+	
+	
+	@PostMapping("/member/update")
+	public String processMemberUpdate(
+			@ModelAttribute("loginSessionBeanDefault") membershipInformationBean mb2,
+		
+			@RequestParam("userName") String userName,
+			@RequestParam("userPhone") String userPhone,
+			@RequestParam("userGender") String userGender,
+			Model model
+			) {
+		membershipInformationBean mb=new membershipInformationBean();
+		
+		
+		System.out.println(" userGender= "+userGender);
+		//設定預設值
+	
+//		mb.setUserPhone(userGender);
+//		model.addAttribute("updateBean",mb);
+////		
+		return "member_Ui";
 	}
 	
 	
