@@ -27,7 +27,7 @@ public class CartController {
 	
 	@GetMapping("/deletecart")
 	public String deletecart(Model model) {
-		 return "cart/deletecart";
+		 return "cart_30/deletecart";
 	}
 	
 	@GetMapping("/add")
