@@ -438,6 +438,7 @@ SELECT * from PRODUCT;
                         <input type="submit" id="submitlogin" name="submitlogin" value="登入"
                             class="loginSp"
                             style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;">
+                            <input type="reset" value="重置" />
                     </div>
     
                 </div>

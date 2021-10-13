@@ -4,8 +4,8 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
@@ -29,8 +29,20 @@
 <a href="<c:url value='/member/update' />">會員專區(買家)</a><BR>
 <br>
 
+<hr>
+<hr>
 
-
+		<form:form method='POST' modelAttribute="loginSessionBean"
+			class='form-horizontal' enctype="multipart/form-data">
+			<!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
+			hello !!! 
+			
+			<form:input type="text" class="inputClass"  path="userEmail" id="userEmail" />
+			
+			</form:form>
+			
+<hr>
+<hr>
 
 <sql:setDataSource var="BuyBuyLa" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 url="jdbc:sqlserver://localhost:1433;databaseName=BuyBuyLa"

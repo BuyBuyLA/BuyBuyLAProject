@@ -36,9 +36,21 @@ public class MemberController {
 	}
 	
 	@GetMapping("/")  //視圖傳回
-	public String index000() {
+	public String index000(
+			@ModelAttribute("loginSessionBean2") membershipInformationBean mb2,
+//			@RequestParam("userEmail") String userEmail,
+			Model model) {
+		membershipInformationBean mb=new membershipInformationBean();	
+		mb.setUserEmail("哈囉您好");
+		mb.setUserPwd("c");
+		model.addAttribute("loginSessionBean",mb);
+		
+		
+		System.out.println("--------------->login後回傳的loginSessionBean  = "+mb.getUserEmail());
 		return "index";
 	}
+	
+
 	
 	@GetMapping("/member/add")
 	public String getAddNewMember(Model model) {
@@ -52,7 +64,6 @@ public class MemberController {
 	
 		model.addAttribute("membershipInformationBean",mb);
 		return "signupPage";
-		
 	}
 	
 	@PostMapping("/member/add")
@@ -92,11 +103,10 @@ public class MemberController {
 			@ModelAttribute("loginSessionBeanDefault") membershipInformationBean mb2,
 			Model model	
 		) {
-		System.out.println("進入processMemberLogin");
+		System.out.println("==========進入processMemberLogin=====================");
 		membershipInformationBean mb=new membershipInformationBean();
-		//設定預設值
-		System.out.println("Login ->userEmail="+mb2.getUserEmail());
 		
+		System.out.println("processMemberLogin ->userEmail="+mb2.getUserEmail());		
 		String userEmail=mb2.getUserEmail();
 		String userPwd=mb2.getUserPwd();
 		
@@ -119,7 +129,7 @@ public class MemberController {
 			return "index";
 		}else if (loginResult==2) {
 			System.out.println("沒帳號拉");
-			return "signupPage";
+			return "loginPage";
 		}else if (loginResult==3) {
 			System.out.println("帳號重複");
 			return "loginPage";
@@ -136,12 +146,13 @@ public class MemberController {
 	
 	@GetMapping("/member/update")
 	public String getMemberUpdate(
-			@ModelAttribute("loginSessionBean") membershipInformationBean mb2,
-	
+			@ModelAttribute("loginSessionBean2") membershipInformationBean mb2,
+			
 			Model model) {
 		membershipInformationBean mb=new membershipInformationBean();
 		//設定預設值
 		  //順序 model (不用set)- 下一個post要set才會存進去(縣市再頁面) 
+		System.out.println("抓登入的bean的值 EMAIL = "  +mb2.getUserEmail());
 		mb.setUserEmail(mb2.getUserEmail());
 		mb.setUserName(mb2.getUserName());
 		model.addAttribute("loginSessionBeanDefault",mb);

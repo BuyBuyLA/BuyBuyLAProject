@@ -100,7 +100,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
  <div>
     
-    <form:form method='POST' modelAttribute="loginSessionBeanDefault"
+    <form:form method='POST' modelAttribute="loginSessionBean2"
     class='form-horizontal' enctype="multipart/form-data">
     <!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
 
@@ -145,7 +145,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
      <td>
        <!--放從DB取出的資料-->     &nbsp;&nbsp;/&nbsp;&nbsp; 
        <label>  <input class="option-input radio" type="radio" name="uiGender" id="uiGender "value="男性">  男性</label> 
-    <label>  <input class="option-input radio" type="radio" name="uiGender" id="uiGender "value="男性">    女性</label>
+    <label>  <form:radiobutton class="option-input radio" path="radio" name="uiGender" id="uiGender "value="男性"/>    女性</label>
         
      
      </td>
