@@ -14,6 +14,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -100,7 +101,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
  <div>
     
-    <form:form method='POST' modelAttribute="loginSessionBean2"
+    <form:form method='POST' modelAttribute="loginSessionBean3"
     class='form-horizontal' enctype="multipart/form-data">
     <!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
 
@@ -112,7 +113,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
  	<td> 
     <!--放從DB取出的資料-->         
     <input id="userName" path="userName" type='text' class='inputClass' readonly="readonly" />
-    
+    ${loginSessionBean3.userEail} 
 
 	</td> 
  </tr>
@@ -121,10 +122,10 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
  	<td> 
  	<label for="proName"></label>
    <!--放從DB取出的資料-->         
-   <form:input id="userName" path="userName" type='text' class='inputClass' />
+  
    &nbsp;&nbsp;/&nbsp;&nbsp;
    
-   <form:input id="userName" path="userName" type='text' class='inputClass' />
+   
  	</td> 
  </tr>
    
@@ -133,10 +134,10 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
    <td>手機號碼</td>
    <td>
     <!--放從DB取出的資料-->         
-    <form:input id="userName" path="userName" type='text' class='inputClass' readonly="readonly"/>
+    
     &nbsp;&nbsp;/&nbsp;&nbsp;  
     
-    <form:input id="userPhone" path="userPhone" type='text' class='inputClass' />
+    
    </td>
    </tr>
 
@@ -144,8 +145,11 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
     <td>性別</td>
      <td>
        <!--放從DB取出的資料-->     &nbsp;&nbsp;/&nbsp;&nbsp; 
-       <label>  <input class="option-input radio" type="radio" name="uiGender" id="uiGender "value="男性">  男性</label> 
-    <label>  <form:radiobutton class="option-input radio" path="radio" name="uiGender" id="uiGender "value="男性"/>    女性</label>
+       <label>  <input class="option-input radio" type="radio" name="uiGender" id="uiGender "value="男性">  
+       男性</label> 
+    <label>      <input class="option-input radio" type="radio" name="uiGender" id="uiGender "value="男性">
+    女性</label>
+    
         
      
      </td>

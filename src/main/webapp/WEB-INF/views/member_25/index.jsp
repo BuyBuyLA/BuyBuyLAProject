@@ -7,6 +7,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,20 +25,33 @@
 <a href='MemberForm.jsp' >會員資料新增</a><br>
 <a href='queryMember.do' >會員資料查詢</a><br>
 
+
+<form:form method='POST' modelAttribute="loginSessionBean"
+	class='form-horizontal' enctype="multipart/form-data">
+			<!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
 <a href="<c:url value='/member/add' />">新增會員資料</a><BR>
 <a href="<c:url value='/member/login' />">登入會員</a><BR>
 <a href="<c:url value='/member/update' />">會員專區(買家)</a><BR>
+<a href="<c:url value='/member/update' />">  <button type="submit" id="btnAdd"  name="submit" value="註冊1" style=""></button>
+   tEST</a>
 <br>
 
 <hr>
 <hr>
 
-		<form:form method='POST' modelAttribute="loginSessionBean"
-			class='form-horizontal' enctype="multipart/form-data">
-			<!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
+		
+			
 			hello !!! 
 			
 			<form:input type="text" class="inputClass"  path="userEmail" id="userEmail" />
+			
+			
+			<hr>
+			<form:label  path="userEmail"> ${userEmail} ->USER郵件userEmail</form:label>
+			<hr>
+			<form:label  path="userEmail">userEmail </form:label>
+			<hr>
+			 Hello!!!!     ${loginSessionBean.userEmail}
 			
 			</form:form>
 			

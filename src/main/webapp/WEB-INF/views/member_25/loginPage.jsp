@@ -1,22 +1,21 @@
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%
+response.setContentType("text/html;charset=UTF-8");
+response.setHeader("Cache-Control", "no-cache"); // HTTP 1.1
+response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-	crossorigin="anonymous">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 
     
 <title>Login</title>
@@ -352,11 +351,7 @@ body {
 	
 	</head>
 <body>
-	<!-- for bootstrap -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-		crossorigin="anonymous"></script>
+	
 
 
 
@@ -380,13 +375,7 @@ body {
     		</li>
         </ul>
 </nav> 
-<sql:setDataSource var="snapshot" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-     url="jdbc:sqlserver://localhost:1433;databaseName=BuyBuy"
-     user="sa"  password="password"/>
 
-<sql:query dataSource="${snapshot}" var="result">
-SELECT * from PRODUCT;
-</sql:query>
 
 			<div class="header" >
 			BuyBuyLa <span style="font-size:30 ;color:#fff ; font-weight:200;">× Make money what you like</span>
@@ -400,27 +389,11 @@ SELECT * from PRODUCT;
 
 	
 
-	
-	
-
-	<script type="text/javascript" src="server.js"></script>
-		<!--
-        	描述：本页面的js操作
-        -->
-		<script type="text/javascript" src="test.js"></script>
 
 
-
-
-
-
-
-
-
-
-        <form:form method='POST' modelAttribute="loginSessionBeanDefault"
+     
+			<form:form method='POST'  modelAttribute="loginSessionBeanDefault"
 			class='form-horizontal' enctype="multipart/form-data">
-			<!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
 	
 		
             <div class="container">
@@ -429,16 +402,22 @@ SELECT * from PRODUCT;
                     <div class="loginArea">
                          <br><br><label for="">登入</label>
                    
-
+			<form:label id="userEmail" path="userEmail"> ${userEmail} ->USER郵件</form:label>
 					 <br><br>帳號&nbsp; &nbsp;<form:input id="userEmail" path="userEmail" type='text' class='emailLogin' style="width: 250px; height: 30px;" />
 					 <br><br>密碼&nbsp;&nbsp; <form:input id="userPwd" path="userPwd" type='text' class='pwdLogin' style="width: 250px; height: 30px;" />              
 					 
                         
                         <br><br>
-                        <input type="submit" id="submitlogin" name="submitlogin" value="登入"
-                            class="loginSp"
-                            style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;">
-                            <input type="reset" value="重置" />
+                        
+                    
+                    <<a href="<c:url value='/member/index' />"><input type="submit" id="submitLogin" name='submitLogin' value="確認送出"  style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;"/>
+                    </a>
+                    
+                    <input type="submit" id="btnAdd"  name="submit" value="註冊" class="reg">
+                    
+                    <a href='${pageContext.request.contextPath}/member/index'>回到會員管理
+                    <input type="submit" id="submitLogin" name='submitLogin' value="確認送出"  style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;"/>
+                    </a>
                     </div>
     
                 </div>

@@ -129,7 +129,8 @@ form {
 		<div class="loginarea">
 		
 		<br>
-		<input type="submit" id="btnAdd" style="display:none;"  name="submit" value="註冊" >
+		<input type="button" id="btnAdd" style="display:none;"  name="submit" value="註冊1" >
+		 <button type="submit" id="btnAdd"  name="submit" value="註冊1" style=""></button>
 				<br><br><br><br><br>
 			<hr>
 			<h3>已有帳號?</h3>
