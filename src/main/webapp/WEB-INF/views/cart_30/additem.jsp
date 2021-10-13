@@ -24,7 +24,7 @@
 INSERT INTO  Cart VALUES('${row.PID}','${row.P_img}','${row.P_name}','${row.P_price}','1')
 else
 update Cart set count=count+1 where pid='${row.PID}' " var="count" dataSource="${snapshot}"/>
-${row.PID},${row.P_img},${row.P_name},${row.P_price}
+
 </c:forEach>
 <%
 request.getSession(true).removeAttribute("PID");

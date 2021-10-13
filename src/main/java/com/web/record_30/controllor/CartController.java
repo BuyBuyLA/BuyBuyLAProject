@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CartController {
 	@GetMapping({"/","/test"})
 	public String home(Model model) {
-		 return "cart_30/TotalHome";
+		 return "cart_30/home";
 	}
 	
 	

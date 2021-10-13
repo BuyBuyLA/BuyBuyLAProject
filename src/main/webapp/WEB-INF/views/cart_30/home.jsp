@@ -114,6 +114,35 @@ i {
 	right: 10px;
 	top: 0;
 }
+.mycar2 {
+	
+	width: 200px;
+	font: bold 16px/30px "微软雅黑";
+	text-align: center;
+	margin: 30px 200px;
+	border: 1px solid #CCCCCC;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.mycar2 a {
+	display: block;
+	width: 100%;
+	font: bold 16px/30px "微软雅黑";
+}
+
+.mycar2:hover {
+	background-color: gold
+}
+
+.mycar2 i {
+	font: bold 22px/30px "微软雅黑";
+	color: red;
+	position: absolute;
+	right: 10px;
+	top: 0;
+}
 </style>
 <body>
  
@@ -128,7 +157,10 @@ SELECT * from goods;
 			<h1>商品列表</h1>
 			<div class="mycar">
 				<a href="<c:url value='/cart' />">我的購物車</a><i id="ccount">0</i>
-			</div>
+			</div><br><br>
+		<div class="mycar2">
+				<a href="<c:url value='/user' />">管理購物紀錄</a>
+		</div>	
 
 <div class="list">
 <c:forEach var="row" items="${result.rows}">
