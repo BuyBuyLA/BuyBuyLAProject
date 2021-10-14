@@ -87,5 +87,14 @@ public class ProductDaoImpl implements ProductDao {
 		return session.createQuery(hql, Product.class)
 					.getResultList();
 	}
+
+	@Override
+	public void deleteProduct(int productId) {
+		Session session=factory.getCurrentSession();
+		Product product=new Product();
+		product.setProductId(productId);
+		
+		session.delete(product);
+	}
 	
 }

@@ -12,6 +12,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -64,6 +65,19 @@ public class ProductController {
 		
 	}
 	
+	//管理頁面-商品
+		@GetMapping("manage/products")
+		public String managelist(Model model) {
+
+			List<Product> beans = productservice.getAllProducts();
+			model.addAttribute("products", beans);
+			model.addAttribute("categoryList", productservice.getAllCategories());
+			return "product_11/manage/products";
+			
+			
+		}
+	
+	
 	
 //個別商品頁面
 		@GetMapping("/product")
@@ -73,20 +87,13 @@ public class ProductController {
 			model.addAttribute("product", productservice.getProductById(id));
 			return "product_11/product";
 		}
-
-		@GetMapping("/products/query")
-		public String getQueryProductForm(Model model) {
-			Product p = new Product();
-			model.addAttribute("productBean", p);
-			return "product_11/test";
-		}
 		
-		@PostMapping("/products/query")
+		@RequestMapping("/query")
 		public String processQueryProduct(
-				@ModelAttribute("productBean") Product p,
+				@RequestParam("productName") String productName,
 				Model model
 				) {
-			List<Product> bean = productservice.getProductByName(p.getProductName());
+			List<Product> bean = productservice.getProductByName(productName);
 			model.addAttribute("products", bean);
 			return "product_11/products";
 			
@@ -243,8 +250,35 @@ public class ProductController {
 		public String getProductsByCategory(@PathVariable("category") String category, Model model) {
 			List<Product> products = productservice.getProductsByCategory(category);
 			model.addAttribute("products", products);
-			return "product_11/products";
+			return "product_11/products_category";
 		}
+		
+//更新表單
+		@GetMapping("/update/{productId}")
+		public String getUpdateProductForm(@PathVariable("productId") Integer productId, Model model) {
+			Product product = productservice.getProductById(productId);
+			model.addAttribute("product",product);
+			return "product_11/updateForm";
+		}
+		
+		@PostMapping("/update/{productId}")
+		public String processUpdateProductForm(@PathVariable("productId") Integer productId, Model model) {
+			Product product = productservice.getProductById(productId);
+			model.addAttribute("product",product);
+			return "product_11/updateForm";
+		}
+		
+		
+		
+//刪除表單		
+		@GetMapping("/delete/{productId}")
+		public String getDeleteProductForm(@PathVariable("productId") Integer productId, Model model) {
+			productservice.deleteProduct(productId);
+			
+			return "redirect:/manage/products";
+		}
+		
+		
 
 //表單只接受下列欄位，其他欄位丟出例外
 	@InitBinder

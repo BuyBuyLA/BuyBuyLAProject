@@ -25,4 +25,8 @@ public interface ProductService {
 		
 		//更新商品
 		void updateProduct(int productId,Product product);
+		
+		
+		//刪除商品
+		void  deleteProduct(int productId);
 }

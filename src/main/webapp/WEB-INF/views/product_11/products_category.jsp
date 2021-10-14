@@ -1,47 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
     href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel='stylesheet' href="<c:url value='/css/styles.css' />"  type="text/css" />
-<title>Products</title>
-</head> 
+<title>Insert title here</title>
+</head>
 <body>
-    <section>
+   <section>
         <div>
             <div class="container" style="text-align: center" >
-                <h1>BuyBuyLa</h1>
+                <h1 >產品清單</h1>
             </div>
         </div>
     </section>
     
     
 	<div align='center'>
-       <!--   <a href="<c:url value='/' />">回首頁</a>&nbsp;&nbsp;-->
+        <a href="<c:url value='/' />">回首頁</a>&nbsp;&nbsp;
+        <a href="<c:url value='/queryByCategory' />">重新查詢</a>
     </div> 
-       <c:forEach var='category' items='${categoryList}' >
-	<a href="<c:url value='/products/${category}' />">${category}</a><br>
-	</c:forEach>
+    
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
- 
- <form:form method='POST' action="./query" class='form-horizontal'>
-            <fieldset >
-                    <div>
-                        <input name="productName" id="productName"  type='text'
-                            class='form:input-large' />
-                    </div>
-                    <div >
-                        <input id="btnAdd" type='submit' class='btn btn-primary'
-                            value="送出" />
-                    </div>
-            </fieldset>
-        </form:form>
+
+
         
     <section class="container">
         <div class="row">
@@ -70,12 +58,5 @@
          </c:forEach>
         </div>
     </section>
-    
-
-        
-     <div align='center'>
-        <a href="<c:url value='/' />">回首頁</a>
-    </div> 
 </body>
 </html>
-    

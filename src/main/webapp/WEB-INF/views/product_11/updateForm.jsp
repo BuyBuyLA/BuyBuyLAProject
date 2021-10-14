@@ -35,7 +35,9 @@ fieldset {
     <hr style="height: 1px; border: none; color: #333; background-color: #333;">
     <section class="container">
         <!--       三個地方要完全一樣 -->
-        <form:form method='POST' modelAttribute="productBean" class='form-horizontal'
+        <img width='300' height='300' 
+  				   src="<c:url value='/getPicture/${product.productId}' />" />	
+        <form:form method='POST' modelAttribute="product" class='form-horizontal'
         	enctype="multipart/form-data">
             <fieldset >
                 <div class="form-group">
@@ -64,7 +66,7 @@ fieldset {
                     </label>
                     <div class='col-lg-10'>
                         <form:select path="category">
-                            <form:option value="男生衣服">
+                            <form:option value="家電影音">
                             	
                             </form:option>
                             <form:options items="${categoryList}" />
