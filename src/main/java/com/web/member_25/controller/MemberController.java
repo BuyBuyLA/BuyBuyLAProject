@@ -1,5 +1,7 @@
 package com.web.member_25.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,6 +25,8 @@ import com.web.member_25.service.MemberService;
 
 
 @Controller
+//應該是要可以用的
+//@SessionAttributes(value = "loginSessionBean", types = {membershipInformationBean.class})  
 public class MemberController {
 	
 	//控制器會呼叫service
@@ -30,12 +35,20 @@ public class MemberController {
 	MemberService memberService;
 	
 	@Autowired 
-	public MemberController(MemberService memberService) {
+	public MemberController(
+//			Model model,
+			MemberService memberService) {
+		
 		this.memberService = memberService;
+		
+//		membershipInformationBean mb=new membershipInformationBean();	
+//		mb.setUserEmail("Hi 歡迎光臨");
+//		mb.setUserPwd("");
+//		model.addAttribute("loginSessionBean2",mb);
 	}
 	
-	@GetMapping({"/","/index"})  //視圖傳回
-	public ModelAndView index000(
+	@GetMapping("/index")  //視圖傳回
+	public String index000(
 			@ModelAttribute("loginSessionBean") membershipInformationBean mb2,
 //			@RequestParam("userEmail") String userEmail,
 			RedirectAttributes redirectAttributes,  //RedirectAttributes重新導向的方法
@@ -49,27 +62,27 @@ public class MemberController {
 			System.out.println("--------------->login後回傳的loginSessionBean  (if ! = null)  = "+mb2.getUserEmail());
 		mb.setUserEmail(mb2.getUserEmail());
 		mb.setUserPwd(mb2.getUserPwd());
-//		model.addAttribute("loginSessionBean2",mb);
+		model.addAttribute("loginSessionBean2",mb);
 		
-		redirectAttributes.addFlashAttribute("loginSessionBeanFromIndex", mb);
-		ModelAndView mv = new ModelAndView("redirect:/index2"); 
-		return mv;
+//		redirectAttributes.addFlashAttribute("loginSessionBeanFromIndex", mb);
+//		ModelAndView mv = new ModelAndView("redirect:/index2"); 
+		return "index";
 		}else {
 			mb.setUserEmail("Hi 歡迎光臨");
 			mb.setUserPwd("");
-//			model.addAttribute("loginSessionBean2",mb);
+			model.addAttribute("loginSessionBean2",mb);
 			System.out.println("--------------->login後回傳的loginSessionBean  (if = null)  = "+mb2.getUserEmail());
 			
 		}
-		redirectAttributes.addFlashAttribute("loginSessionBeanFromIndex", mb);
-		ModelAndView mv = new ModelAndView("redirect:/index2"); 
-		return mv;
+//		redirectAttributes.addFlashAttribute("loginSessionBeanFromIndex", mb);
+//		ModelAndView mv = new ModelAndView("redirect:/index2"); 
+		return "index";
 		
 	}
 	
-	@PostMapping({"/","/index2"})  //視圖傳回
+	@PostMapping("index")  //視圖傳回
 	public String processindex000(
-			@ModelAttribute("loginSessionBeanFromIndex") membershipInformationBean mb2,
+			@ModelAttribute("loginSessionBean2") membershipInformationBean mb2,
 //			@RequestParam("userEmail") String userEmail,
 			Model model) {
 		membershipInformationBean mb=new membershipInformationBean();	
@@ -77,7 +90,7 @@ public class MemberController {
 		mb.setUserPwd(mb2.getUserPwd());
 		model.addAttribute("loginSessionBean3",mb);
 System.out.println("=======================================");
-		System.out.println("--------------->login後回傳的loginSessionBean (process) = "+mb2.getUserEmail());
+		System.out.println("-------index有做到post方法-------->login後回傳的loginSessionBean (process) = "+mb2.getUserEmail());
 		return "index";
 	}
 	
@@ -133,7 +146,8 @@ System.out.println("=======================================");
 	public ModelAndView processMemberLogin(
 			@ModelAttribute("loginSessionBeanDefault") membershipInformationBean mb2,
 			Model model,
-			RedirectAttributes redirectAttributes
+			RedirectAttributes redirectAttributes,
+			HttpSession session   //用作攔截
 		) {
 		System.out.println("==========進入processMemberLogin=====================");
 		membershipInformationBean mb=new membershipInformationBean();
@@ -151,6 +165,13 @@ System.out.println("=======================================");
 		
 		if (loginResult==1) {
 			System.out.println("登入成功");
+			
+			//============攔截器測試==================
+			session.setAttribute("loginUser", userEmail);
+            session.setAttribute("uid",userPwd);
+			
+            
+			
 			
 			System.out.println("登入成功的 userEmail = "+userEmail);
 			System.out.println("登入成功的 userPwd = "+userPwd);
@@ -182,7 +203,26 @@ System.out.println("=======================================");
 	}
 	
 	
+	//登出
+	@GetMapping("/member/logout")
+    public String execute(  		
+			Model model,
+    		HttpSession session){
+		
+        session.invalidate();
+        membershipInformationBean mb=new membershipInformationBean();
+        mb.setUserEmail("b123@gmail.com");
+		mb.setUserPwd("b123456");
+		model.addAttribute("loginSessionBeanDefault",mb);
+		System.out.println("登出囉!");
+        
+        
+        return "loginPage";
+    }
+	
+	
 	@GetMapping("/member/update")
+	@PostMapping("/member/update")  //收到post請求時也會做
 	public String getMemberUpdate(
 			@ModelAttribute("loginSessionBean2") membershipInformationBean mb2,
 			

@@ -1,5 +1,6 @@
 package com.web.member_25.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,14 +14,21 @@ public class membershipInformationBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
+	@Column(name="USEREMAIL")
 	String userEmail;
+	@Column(name="USERPHONE")
 	String userPhone;
+	@Column(name="USERPWD")
 	String userPwd;
-	
+	@Column(name="USERNAME")
 	String userName;
+	@Column(name="USERGENDER")
 	String userGender;
+	@Column(name="ADDRESS")
 	String address;
+	@Column(name="HEAD_SHOT")
 	String head_shot;
+	@Column(name="IDENTIFICATION")
 	String Identification;
 	
 	

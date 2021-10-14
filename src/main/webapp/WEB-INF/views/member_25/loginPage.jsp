@@ -402,7 +402,7 @@ body {
                     <div class="loginArea">
                          <br><br><label for="">登入</label>
                    
-			<form:label id="userEmail" path="userEmail"> ${userEmail} ->USER郵件</form:label>
+			
 					 <br><br>帳號&nbsp; &nbsp;<form:input id="userEmail" path="userEmail" type='text' class='emailLogin' style="width: 250px; height: 30px;" />
 					 <br><br>密碼&nbsp;&nbsp; <form:input id="userPwd" path="userPwd" type='text' class='pwdLogin' style="width: 250px; height: 30px;" />              
 					 

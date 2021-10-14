@@ -18,13 +18,12 @@ import com.web.member_25.model.membershipInformationBean;
 //import ch01.dao.MemberDao;
 //import ch01.model.MemberBean;
 
-
 //實作介面或繼承父類別,程式使用時直接寫父類別/介面名稱
 @Repository
-public class MemberHibernateDaoImpl implements MemberDao  {
-	
+public class MemberHibernateDaoImpl implements MemberDao {
+
 	SessionFactory factory;
-	
+
 	@Autowired
 	public MemberHibernateDaoImpl(SessionFactory factory) {
 		this.factory = factory;
@@ -34,7 +33,7 @@ public class MemberHibernateDaoImpl implements MemberDao  {
 	public boolean existsById(String id) {
 		Session session = factory.getCurrentSession();
 		boolean result = false;
-		
+
 		String hql = "FROM MemberBean m WHERE m.id = :mid";
 //		List<MemberBean> beans = session.createQuery(hql, MemberBean.class)
 //				                        .setParameter("mid", id)
@@ -45,16 +44,14 @@ public class MemberHibernateDaoImpl implements MemberDao  {
 //			result = false;
 //		}
 		try {
-		    session.createQuery(hql, MemberBean.class)
-			       .setParameter("mid", id)
-                   .getSingleResult();
-		    result = true;
-		} catch(NoResultException e) {
+			session.createQuery(hql, MemberBean.class).setParameter("mid", id).getSingleResult();
+			result = true;
+		} catch (NoResultException e) {
 			result = false;
-       	} catch(  NonUniqueResultException e) {
+		} catch (NonUniqueResultException e) {
 			result = true;
 		}
-		
+
 		return result;
 	}
 
@@ -68,8 +65,7 @@ public class MemberHibernateDaoImpl implements MemberDao  {
 	public List<MemberBean> findAll() {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM MemberBean";
-		List<MemberBean> beans = session.createQuery(hql, MemberBean.class)
-				                        .getResultList();
+		List<MemberBean> beans = session.createQuery(hql, MemberBean.class).getResultList();
 		return beans;
 	}
 
@@ -94,37 +90,62 @@ public class MemberHibernateDaoImpl implements MemberDao  {
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(mb);
 	}
-	
+
 	public int login(String userEmail, String userPwd) {
-        Session session = factory.getCurrentSession();
-        
-        int loginState=0;
-        System.out.println("===================loginDAO執行中=" );   
+		Session session = factory.getCurrentSession();
+
+		int loginState = 0;
+		System.out.println("===================loginDAO執行中=");
 
 		try {
 //			 Query query=session.createQuery(hql);
 //                   .getSingleResult();
-			
-			Query query=session.createQuery("FROM membershipInformationBean where userEmail=:userEmail and userPwd=:userPwd",membershipInformationBean.class);
-	        query.setParameter("userEmail", userEmail);
-	        query.setParameter("userPwd", userPwd);
-	        System.out.println("===================HQL執行完畢query="+query);
-			 System.out.println("===================HQL執行完畢=" );
-			 
-			 System.out.println("query.getSingleResult()-------------> "+query.getSingleResult());
-			 loginState = 1;
-		} catch(NoResultException e) {
+
+			Query query = session.createQuery(
+					"FROM membershipInformationBean where userEmail=:userEmail and userPwd=:userPwd",
+					membershipInformationBean.class);
+			query.setParameter("userEmail", userEmail);
+			query.setParameter("userPwd", userPwd);
+			System.out.println("===================HQL執行完畢query=" + query);
+			System.out.println("===================HQL執行完畢=");
+
+			System.out.println("query.getSingleResult()-------------> " + query.getSingleResult());
+			loginState = 1;
+		} catch (NoResultException e) {
 			System.out.println("沒帳號拉");
 			loginState = 2;
-       	} catch(  NonUniqueResultException e) {
-    		System.out.println("多筆帳號拉");
-    		loginState = 3;
+		} catch (NonUniqueResultException e) {
+			System.out.println("多筆帳號拉");
+			loginState = 3;
 		}
-		
+
 		return loginState;
-		
-        
-    }
+
+	}
+
+	@Override
+	public int overlappedAccount(String userEmail) {
+		Session session = factory.getCurrentSession();
+		int loginState = 0;
+		System.out.println("===================overlappedAccount執行中=");
+
+		try {
+			Query query = session.createQuery(
+					"FROM membershipInformationBean where userEmail=:userEmail",
+					membershipInformationBean.class);
+			query.setParameter("userEmail", userEmail);
+			System.out.println("query.getSingleResult()-------------> " + query.getSingleResult());
+			loginState = 1;
+		} catch (NoResultException e) {
+			System.out.println("沒人使用此帳號");
+			loginState = 2;
+		} catch (NonUniqueResultException e) {
+			System.out.println("多筆帳號拉 怎麼可能!! 一定是菸捲搞的鬼");
+			loginState = 3;
+		}
+
+		return loginState;
+	}
 
 //	//前置的下拉選單
 //	@Override

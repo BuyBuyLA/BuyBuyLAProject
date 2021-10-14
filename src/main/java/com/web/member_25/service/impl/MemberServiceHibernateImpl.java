@@ -62,6 +62,12 @@ public class MemberServiceHibernateImpl implements MemberService {
 		
 	}
 
+	@Override
+	public int overlappedAccount(String userEmail) {
+		return dao.overlappedAccount(userEmail);
+		
+	}
+
 //	@Override   //下拉選單
 //	public List<membershipInformationBean> getIdentificationList() {
 //		return dao.getIdentificationList();

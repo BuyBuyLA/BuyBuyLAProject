@@ -101,7 +101,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
  <div>
     
-    <form:form method='POST' modelAttribute="loginSessionBean3"
+    <form:form method='POST' modelAttribute="loginSessionBean"
     class='form-horizontal' enctype="multipart/form-data">
     <!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
 
@@ -113,7 +113,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
  	<td> 
     <!--放從DB取出的資料-->         
     <input id="userName" path="userName" type='text' class='inputClass' readonly="readonly" />
-    ${loginSessionBean3.userEail} 
+    HI!!! ${loginSessionBean.userEail} 
 
 	</td> 
  </tr>

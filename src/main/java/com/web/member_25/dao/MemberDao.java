@@ -25,6 +25,9 @@ public interface MemberDao {
 	//登入
 	int login(String userEmail, String userPwd);
 	
+	//帳號重複判斷
+	int overlappedAccount(String userEmail);
+	
 //	//前置下拉選單 
 //		List<membershipInformationBean>  getIdentificationList();
 

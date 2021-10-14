@@ -23,6 +23,7 @@ public interface MemberService {
 	
 	int login(String userEmail, String userPwd);
 	
+	int overlappedAccount(String userEmail);
 	
 	
 //	//前置下拉選單 

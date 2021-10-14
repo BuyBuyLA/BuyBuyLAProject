@@ -22,31 +22,26 @@
 <div class='center' >
 <h2>會員管理</h2>
 <hr>
-<a href='MemberForm.jsp' >會員資料新增</a><br>
-<a href='queryMember.do' >會員資料查詢</a><br>
 <hr><hr>
 
 <form:form method='POST' modelAttribute="loginSessionBean"
-	class='form-horizontal' enctype="multipart/form-data">
+	class='form-horizontal' >
 			<!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
 			
 <a href="<c:url value='/session' />">sessionAttribute測試</a><BR>	
 <hr><hr>			
-<a href="<c:url value='/member/add' />">新增會員資料</a><BR>
-<a href="<c:url value='/member/login' />">登入會員</a><BR>
+<a href="<c:url value='/try/add' />">新增會員資料</a><BR>
+<a href="<c:url value='/try/login' />">登入會員</a><BR>
 <hr><hr>
-<a href="<c:url value='/member/logout' />">登出會員</a><BR>
-<hr><hr>
-<a href="<c:url value='/member/update' />">  <input type="submit" value="會員專區button" id=memberUI"  name="memberUI">會員專區(買家)</a><BR>
-<a href="<c:url value='/member/update' />">  <button type="submit" id="btnAdd"  name="submit" value="註冊1" style=""></button>
-   tEST</a>
+<a href="<c:url value='/try/logout' />">登出會員</a><BR>
+
 <br>
 
 <hr>
 
 			<hr>
 
-			 Hello!!!!     ${loginSessionBean.userEmail}
+			 Hello!!!!     ${loginSession.userEmail}
 			
 			</form:form>
 			
