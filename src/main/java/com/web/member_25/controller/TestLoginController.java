@@ -192,6 +192,36 @@ public class TestLoginController {
 	        return "redirect:/";   //回乾淨首頁成功 讚
 	    }
 		
+		@GetMapping("/try/member_Ui")
+		public String tryMemberUpdate(
+				@ModelAttribute("loginSession") membershipInformationBean mb,
+				Model model) {
+			System.out.println("membershipInformationBean --getUserEmail----->"+mb.getUserEmail());
+			membershipInformationBean mb2=new membershipInformationBean();
+
+			String userEmail=mb.getUserEmail();
+			System.out.println("string指定值時出錯");
+			mb2=memberService.getMemberData(userEmail);
+			System.out.println("getUserEmail --getMemberData2--><--->"+mb2.getUserEmail());
+			System.out.println("getUserPwd --getMemberData2--><--->"+mb2.getUserPwd());
+			 model.addAttribute("memberUiDefault",mb);
+			return "tryMember_Ui";
+		}
+		
+		
+//		@PostMapping("/try/member_Ui")
+//		public String tryProcessMemberUpdate(
+//				@ModelAttribute("loginSession") membershipInformationBean mb,
+//				Model model) {
+////			membershipInformationBean mb=new membershipInformationBean();
+////			mb.setUserEmail("");
+////			mb.setUserPwd(""); 
+////			model.addAttribute("loginSession",mb);
+//			System.out.println("membershipInformationBean --getUserEmail----->"+mb.getUserEmail());
+//			 model.addAttribute("memberUiDefault",mb);
+//			return "tryMember_Ui";
+//		}
+		
 		
 		
 		

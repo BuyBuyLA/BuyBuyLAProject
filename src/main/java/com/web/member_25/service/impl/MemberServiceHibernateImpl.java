@@ -68,6 +68,16 @@ public class MemberServiceHibernateImpl implements MemberService {
 		
 	}
 
+	@Override
+	public membershipInformationBean getMemberData(String userEmail) {
+		return dao.getMemberData(userEmail);
+	}
+
+	@Override
+	public membershipInformationBean getMemberData2(String userEmail) {
+		return dao.getMemberData2(userEmail);
+	}
+
 //	@Override   //下拉選單
 //	public List<membershipInformationBean> getIdentificationList() {
 //		return dao.getIdentificationList();

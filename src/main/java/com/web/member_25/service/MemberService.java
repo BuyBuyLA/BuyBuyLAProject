@@ -25,6 +25,9 @@ public interface MemberService {
 	
 	int overlappedAccount(String userEmail);
 	
+	membershipInformationBean getMemberData(String userEmail);
+	membershipInformationBean getMemberData2(String userEmail);
+	
 	
 //	//前置下拉選單 
 //	List<membershipInformationBean>  getIdentificationList();

@@ -41,8 +41,8 @@
 
 			<hr>
 
-			 Hello!!!!     ${loginSession.userEmail}
-			
+			 Hello!!!!     ${loginSession.userEmail} <br>
+			 Hello!!!!!!!<a href="<c:url value='/try/member_Ui' />"> ${loginSession.userEmail}</a><BR>
 			</form:form>
 			
 <hr>

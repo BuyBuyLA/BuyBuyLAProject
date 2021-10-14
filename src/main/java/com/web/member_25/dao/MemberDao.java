@@ -28,6 +28,10 @@ public interface MemberDao {
 	//帳號重複判斷
 	int overlappedAccount(String userEmail);
 	
+	//找會員資料
+	membershipInformationBean getMemberData(String userEmail);
+	membershipInformationBean getMemberData2(String userEmail);
+	
 //	//前置下拉選單 
 //		List<membershipInformationBean>  getIdentificationList();
 

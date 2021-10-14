@@ -135,6 +135,7 @@ public class MemberHibernateDaoImpl implements MemberDao {
 					membershipInformationBean.class);
 			query.setParameter("userEmail", userEmail);
 			System.out.println("query.getSingleResult()-------------> " + query.getSingleResult());
+			
 			loginState = 1;
 		} catch (NoResultException e) {
 			System.out.println("沒人使用此帳號");
@@ -145,6 +146,48 @@ public class MemberHibernateDaoImpl implements MemberDao {
 		}
 
 		return loginState;
+	}
+	
+	
+	@Override    //找會員資料
+	public membershipInformationBean getMemberData(String userEmail) {
+		Session session = factory.getCurrentSession();
+		membershipInformationBean mb=new membershipInformationBean();
+		System.out.println("DAO--------getMemberData---------->"+userEmail);
+		
+//		Query query = session.createQuery(
+//				"FROM membershipInformationBean where userEmail=:userEmail",
+//				membershipInformationBean.class);
+//		query.setParameter("userEmail", userEmail);
+		
+		
+		String sql = "select userEmail,userPwd,userPhone,userName,userGender,address,head_shot,Identification "
+				+ "from membershipInformation where userEmail=:userEmail";
+		// addEntity()可以告訴Hibernate你想要封裝成物件的型別，然後自動為你封裝
+		Query query = session.createSQLQuery(sql).addEntity(membershipInformationBean.class);
+						query.setParameter("userEmail", userEmail);
+						System.out.println("DAO--------getMemberData---------->Query done ");
+		List<membershipInformationBean> list = query.getResultList();
+		System.out.println("DAO--------getMemberData---------->list done ");
+		for(membershipInformationBean mbBean : list){
+		System.out.println("+DAO++  getMemberData  ++++getUserPwd+++++++++++"+mbBean.getUserPwd());
+		System.out.println("+DAO++  getMemberData  ++++getUserPhone+++++++++++"+mbBean.getUserPhone());
+		}
+		System.out.println("DAO--------getMemberData---------->for done ");
+		
+//		membershipInformationBean mb=session.get(membershipInformationBean.class, userEmail);
+		return mb;
+	}
+	
+	@Override
+	public membershipInformationBean getMemberData2(String userEmail) {
+		
+		Session session = factory.getCurrentSession();
+		System.out.println("DAO---------getMemberData2 開始拉");
+		membershipInformationBean mb = session.get(membershipInformationBean.class, userEmail);
+		System.out.println("DAO---------getMemberData2 做完拉");
+//		membershipInformationBean mb=session.get(membershipInformationBean.class, userEmail);
+		return mb;
 	}
 
 //	//前置的下拉選單
