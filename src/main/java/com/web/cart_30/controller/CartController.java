@@ -42,7 +42,7 @@ public class CartController {
 	
 	@GetMapping("/additem")
 	public String additem(@RequestParam Integer id ,Model model) {
-		System.out.println("PID = "+id);
+		System.out.println("PID cc= "+id);
 		boolean exists = cartService.existsById(id);
 		System.out.println("exists = "+exists);
 		if(exists!=true) {
