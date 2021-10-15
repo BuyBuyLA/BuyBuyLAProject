@@ -8,9 +8,12 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.web.member_25.controller.AuthInterceptor;
 
 @Configuration 
 @EnableWebMvc //啟動web mvc
@@ -23,7 +26,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 		//視圖邏輯器
 		InternalResourceViewResolver resolver= new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/"); //前導字
-		resolver.setSuffix(".jsp"); //\
+		resolver.setSuffix(".jsp"); //
 		return resolver;
 	}
 	
@@ -52,6 +55,15 @@ public class WebAppConfig implements WebMvcConfigurer {
 		resolver.setMaxUploadSize(81920000);
 		return resolver;
 	}
+	
+	
+	@Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        //註冊自己的攔截器並設定攔截的請求路徑   //攔截登入狀態的session
+        registry.addInterceptor(new AuthInterceptor())
+                .addPathPatterns("/**") //攔截的路徑  /**攔截所有 /*一層
+                .excludePathPatterns(""); //排除的路徑
+    }
 	
 	
 }
