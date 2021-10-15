@@ -1,4 +1,4 @@
-package com.web.member_25.controller;
+package com.web.controller.member_25;
 
 import javax.servlet.http.HttpSession;
 

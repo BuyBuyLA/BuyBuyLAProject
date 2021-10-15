@@ -1,4 +1,4 @@
-package com.web.member_25.controller;
+package com.web.controller.member_25;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,10 +34,10 @@ public class TestLoginController {
 	}
 
 
-	@GetMapping("/")
+	@GetMapping("/zxczc")   //改
 	public String indexDefault() {
 		System.out.println("回首頁");
-		return "tryIndex";
+		return "member_25/tryIndex";
 	}
 	
 	
@@ -54,7 +54,7 @@ public class TestLoginController {
 		System.out.println("首頁的getmapping ----------->getUserEmail ="+mb.getUserEmail());
 		
 		
-		return "tryIndex";
+		return "member_25/tryIndex";
 	}
 	
 	@PostMapping("/try/index")
@@ -64,7 +64,7 @@ public class TestLoginController {
 		System.out.println("有進到POST Index哦-------->UserEmail "+mb.getUserEmail());
 		System.out.println("有進到POST Index哦-------->");
 		
-		return "tryIndex";
+		return "member_25/tryIndex";
 	}
 	
 	@GetMapping("/try/add")
@@ -76,7 +76,7 @@ public class TestLoginController {
 		mb.setUserPwd("c123456");
 		mb.setUserPhone("09123456");
 		model.addAttribute("loginBeanDefault",mb);
-		return "trySignUpPage";
+		return "member_25/trySignUpPage";
 	}
 
 	@PostMapping("/try/add")
@@ -107,7 +107,7 @@ public class TestLoginController {
 		if (loginResult==1 ||loginResult==3) {
 			System.out.println("帳號重複  ----->");
 			
-			return "trySignUpPage";
+			return "member_25/trySignUpPage";
 	
 		}else if (loginResult==2) {
 			System.out.println("無人使用此帳號 已註冊  ----->");
@@ -115,7 +115,7 @@ public class TestLoginController {
 			return "tryIndex";
 		}
 		
-		return  "trySignUpPage";
+		return  "member_25/trySignUpPage";
 	}
 	
 
@@ -127,8 +127,9 @@ public class TestLoginController {
 //			mb.setUserEmail("");
 //			mb.setUserPwd(""); 
 //			model.addAttribute("loginSession",mb);
+			
 			 model.addAttribute("loginSession",new membershipInformationBean());
-			return "tryLoginPage";
+			return "member_25/tryLoginPage";
 		}
 		
 		@PostMapping("/try/login")
@@ -169,7 +170,7 @@ public class TestLoginController {
 				mb2.setUserEmail(userEmail);
 				mb2.setUserPwd(userPwd); 
 				model.addAttribute("loginSession",mb2);
-				return "redirect:/try/index";  //登入成功
+				return "redirect:/member_25/try/index";  //登入成功
 				
 				
 			}else if (loginResult==2) {
@@ -178,7 +179,7 @@ public class TestLoginController {
 				System.out.println("帳號重複  ----->");
 			}
 				
-			return "tryLoginPage";
+			return "member_25/tryLoginPage";
 		}
 		
 		
@@ -213,7 +214,7 @@ public class TestLoginController {
 			System.out.println("getUserEmail --getMemberData2--><--->"+mb2.getUserEmail());
 			System.out.println("getUserPwd --getMemberData2--><--->"+mb2.getUserPwd());
 			 model.addAttribute("memberUiDefault",mb2);
-			return "tryMember_Ui";
+			return "member_25/tryMember_Ui";
 		}
 		
 		@PostMapping("/try/member_Ui")
@@ -247,7 +248,7 @@ public class TestLoginController {
 			
 			memberService.update(mb2);
 				System.out.println("update success");
-			return "tryMember_Ui";
+			return "member_25/tryMember_Ui";
 		}
 		
 		@GetMapping("/try/delete")
