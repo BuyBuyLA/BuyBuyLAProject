@@ -75,4 +75,9 @@ public class ProductSerivceImpl implements ProductService {
 		productDao.deleteProduct(productId);
 	}
 
+	@Override
+	public void updateProductNoImg(int productId, Product product) {
+		productDao.updateProductNoImg(productId, product);		
+	}
+
 }

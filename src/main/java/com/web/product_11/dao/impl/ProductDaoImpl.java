@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -67,17 +68,15 @@ public class ProductDaoImpl implements ProductDao {
 		session.save(product);
 	}
 	
-	//更新商品
+	//更新商品(全)
 	@Override
 	public void updateProduct(int productId, Product product) {
 		Session session=factory.getCurrentSession();
-		Product pBean = session.get(Product.class, productId);
-		if(pBean ==null) {
-			session.update(product);
-		}else {
-			session.save(product);
-		}
+		
+			session.saveOrUpdate(product);
+	
 	}
+	
 	
 	//依商品名稱查詢
 	@Override
@@ -95,6 +94,23 @@ public class ProductDaoImpl implements ProductDao {
 		product.setProductId(productId);
 		
 		session.delete(product);
+	}
+
+	@Override
+	public void updateProductNoImg(int productId, Product product) {
+		Session session=factory.getCurrentSession();
+		String hql="update Product set productName=:name,price=:price,category=:category,"
+				+ "stock=:stock,productNo=:no where productId=:id";
+		session.createQuery(hql)
+		.setParameter("name", product.getProductName())
+		.setParameter("price", product.getPrice())
+		.setParameter("category", product.getCategory())
+		.setParameter("stock",product.getStock())
+		.setParameter("no", product.getProductNo())
+		.setParameter("id", productId)
+		.executeUpdate();
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	}
 	
 }

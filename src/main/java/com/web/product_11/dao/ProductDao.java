@@ -29,7 +29,12 @@ public interface ProductDao {
 	//更新商品
 	void updateProduct(int productId,Product product);
 	
+	//更新商品(無照片)
+	void updateProductNoImg(int productId,Product product);
+	
 	//刪除商品
 	void  deleteProduct(int productId);
+	
+	
 	
 }

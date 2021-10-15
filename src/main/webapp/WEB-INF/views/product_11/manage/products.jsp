@@ -49,8 +49,9 @@
 
 <table id="myTable">
   <tr class="header">
-    <th style="width:20%;">productId</th>
+    <th style="width:10%;">productId</th>
     <th style="width:30%;">productName</th>
+    <th style="width:20%;">productImage</th>
     <th style="width:10%;">price</th>
     <th style="width:10%;">stock</th>
     <th style="width:10%;">update</th>
@@ -60,9 +61,13 @@
   <tr>
     <td>${product.productId}</td>
     <td>${product.productName}</td>
+    <td><img width='100' height='100' 
+  				   src="<c:url value='/getPicture/${product.productId}' />" /></td>
     <td>${product.price}</td>
     <td>${product.stock}</td>
-    <td><a id="update" href="<c:url value='/update/${product.productId}' />">update</a></td>
+   <!-- <td><input type=button onclick="location.href='./update/${product.productId}'" value='update'></td>
+    <td><input type=button onclick="location.href='/delete/${product.productId}'" value='update'></td>-->
+     <td><a id="update" href="<c:url value='/update?productId=${product.productId}' />">update</a></td>
     <td><a  href="<c:url value='/delete/${product.productId}' />">delete</a></td>
   </tr>
   </c:forEach>

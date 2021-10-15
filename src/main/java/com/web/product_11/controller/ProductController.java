@@ -254,18 +254,79 @@ public class ProductController {
 		}
 		
 //更新表單
-		@GetMapping("/update/{productId}")
-		public String getUpdateProductForm(@PathVariable("productId") Integer productId, Model model) {
+		@GetMapping("/update")
+		public String getUpdateProductForm(@RequestParam("productId") Integer productId, Model model) {
 			Product product = productservice.getProductById(productId);
 			model.addAttribute("product",product);
 			return "product_11/updateForm";
 		}
 		
-		@PostMapping("/update/{productId}")
-		public String processUpdateProductForm(@PathVariable("productId") Integer productId, Model model) {
-			Product product = productservice.getProductById(productId);
-			model.addAttribute("product",product);
-			return "product_11/updateForm";
+		@PostMapping("/update")
+		public String processUpdateProductForm(
+			
+				@RequestParam("productId") Integer productId,
+				@ModelAttribute("product") Product p,
+				 Model model) {
+			
+			
+				p.setProductId(productId);
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!p.getProductImage()==="+p.getProductImage());
+				
+				if(!p.getProductImage().isEmpty()) {
+					
+					
+					
+					// 於productImage取得照片
+					MultipartFile productImage = p.getProductImage();
+					// 使用者照片檔名
+					String originalFilename = productImage.getOriginalFilename();
+					p.setFileName(originalFilename);
+					// 建立Blob物件，交由 Hibernate 寫入資料庫
+					// 不是空的and位元組不為空
+					if (productImage != null && !productImage.isEmpty()) {
+						try {
+							// 取所有位元組
+							byte[] b = productImage.getBytes();
+							// 放置Blob
+							Blob blob = new SerialBlob(b);
+							// blob放到bean-Blob coverImage;
+							p.setCoverImage(blob);
+						} catch (Exception e) {
+							e.printStackTrace();
+							throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+						}
+					}
+					
+					productservice.updateProduct(productId, p);
+					
+				}else if(p.getProductImage().isEmpty()){
+					System.out.println("****************************");
+					productservice.updateProductNoImg(productId, p);
+					System.out.println("-------------------------------");
+				}
+					
+				
+				
+				
+//				// 取出副檔名，.png、.jpg
+//				String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//				// 找到應用系統根目錄 /mvcExercise
+//				String rootDirectory = servletContext.getRealPath("/");
+//				try {
+//					// 在根目錄下建立images資料夾
+//					File imageFolder = new File(rootDirectory, "images");
+//					if (!imageFolder.exists())
+//						imageFolder.mkdirs();
+//					File file = new File(imageFolder, "Product_" + p.getProductId() + ext);
+//					productImage.transferTo(file);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+//				}
+				
+				
+		
+			return "redirect:/manage/products";
 		}
 		
 		

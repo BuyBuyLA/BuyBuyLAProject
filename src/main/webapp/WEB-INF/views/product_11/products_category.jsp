@@ -23,8 +23,7 @@
     
     
 	<div align='center'>
-        <a href="<c:url value='/' />">回首頁</a>&nbsp;&nbsp;
-        <a href="<c:url value='/queryByCategory' />">重新查詢</a>
+        <a href="<c:url value='/products' />">回首頁</a>&nbsp;&nbsp;
     </div> 
     
     <hr style="height:1px;border:none;color:#333;background-color:#333;">

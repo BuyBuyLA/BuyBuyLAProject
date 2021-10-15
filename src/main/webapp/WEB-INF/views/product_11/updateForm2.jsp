@@ -16,24 +16,6 @@ fieldset {
     width: 400px;
     margin: auto;
 }
-.aui-info {
-    position: relative;
-}
-
- .fileInput{
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            opacity: 0;
-            display: block;
-            width: 3.5rem;
-            clear: both;
-            display: block;
-            margin: auto;
-            background-color: red;
-        }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <title>Products</title>
@@ -54,8 +36,8 @@ fieldset {
     <hr style="height: 1px; border: none; color: #333; background-color: #333;">
     <section class="container">
         <!--       三個地方要完全一樣 -->
-      
-  				   
+        <img width='300' height='300' id="demo"
+  				   src="<c:url value='/getPicture/${product.productId}' />" />	
         <form:form method='POST' modelAttribute="product" class='form-horizontal'
         	enctype="multipart/form-data">
             <fieldset >
@@ -126,10 +108,8 @@ fieldset {
 						新增照片
 					</label>
 			<div class='col-lg-10'>
-				<form:input  type="file" id="productImage" onchange="fileSelected();" style="display:none;"
-				  path="productImage" vaule="${product.productImage}"
+				<form:input  id="productImage" path="productImage" type='file'
 					class='form:input-large'/>
-					
 			</div>
 		</div>         
                 <div class="form-group">
@@ -141,17 +121,6 @@ fieldset {
             </fieldset>
         </form:form>
     </section>
-   
-    <div class="face">
-     <img width='300' height='300' id="demo" class="normalFace" onclick="fileSelect();"
-  				   src="<c:url value='/getPicture/${product.productId}' />" />	
-  				   
- <form id="form_face" enctype="multipart/form-data" style="width:auto;">
-  <input type="file" name="productImage" id="productImage" onchange="fileSelected();" style="display:none;">
- </form>
-  </div>
-    
-    
     <script>
     $('#productImage').change(function() {
     	  var file = $('#productImage')[0].files[0];
@@ -161,16 +130,6 @@ fieldset {
     	  };
     	  reader.readAsDataURL(file);
     	});
-    
-    function fileSelect() {
-        document.getElementById("productImage").click(); 
-    }
-    
-    function fileSelected() {
-      // 檔案選擇後觸發次函式
-    }
-    
-
     </script>
     
 </body>
