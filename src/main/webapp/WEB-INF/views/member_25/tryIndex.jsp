@@ -34,6 +34,8 @@
 <a href="<c:url value='/try/login' />">登入會員</a><BR>
 <hr><hr>
 <a href="<c:url value='/try/logout' />">登出會員</a><BR>
+<hr><hr>
+<a href="<c:url value='/test' />">振德TotalHome</a><BR>
 
 
 

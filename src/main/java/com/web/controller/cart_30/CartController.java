@@ -9,17 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.web.cart_30.model.Cart;
 
 import com.web.cart_30.service.CartService;
+import com.web.member_25.model.membershipInformationBean;
 import com.web.record_30.model.RecordBean;
 
 
 
 
 @Controller
+@SessionAttributes({"loginSession","memberUiDefault","managerSession"})
 public class CartController {
 	CartService cartService;
 
@@ -31,7 +35,9 @@ public class CartController {
 
 
 	@GetMapping("/test")
-	public String home(Model model) {
+	public String home(
+			@ModelAttribute("loginSession") membershipInformationBean mb,
+			Model model) {
 		 return "cart_30/TotalHome";
 	}
 	

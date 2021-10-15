@@ -356,10 +356,10 @@ dt {
 
 </head>
 <body>
-
+Hi!!!&nbsp;&nbsp;${loginSession.userEmail}我的購物車
 	<nav>
 		<ul class="dropdown">
-			<li><a href="<c:url value='/cart' />">我的購物車(<i id="ccount">0</i>)
+			<li><a href="<c:url value='/cart' />">(<i id="ccount">0</i>)
 			</a></li>
 			<li><a href="main.html">活動專區</a></li>
 			<li><a href="Intelligence32.jsp">團購專區</a></li>
@@ -394,6 +394,8 @@ SELECT * from PRODUCT;
 				</dt>
 				<dd>
 					商品名稱:<span>${row.P_name}</span>
+					<hr><hr>
+					
 				</dd>
 
 				<dd>
