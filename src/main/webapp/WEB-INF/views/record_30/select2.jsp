@@ -161,14 +161,13 @@ a.button2:hover {
     
 
 
-    </style>
 </style>
 </head>
 <body>
-	<%-- <jsp:useBean id="select2" class="user.Select2bean" scope="session" /> --%>
+<%-- 	<jsp:useBean id="select2" class="user.Select2bean" scope="session" /> --%>
 
 <h1>您的購買紀錄&nbsp;:</h1>
-	<form action=".\UseeServlet" method="post">
+	<form>
 
 
 
@@ -176,21 +175,25 @@ a.button2:hover {
 			int i = 0;
 			%>
 			<table>
-
-				<c:forEach var="select" items="${select}">
-
+					<thead>
+					<td style="font-size: 30px;">編號</td>
+						<td style="font-size:30px">商品編號</td>
+						<td style="font-size:30px">商品名稱</td>
+						<td style="font-size:30px">單價</td>
+						<td style="font-size:30px">交易時間</td>
+						<td style="font-size:30px">數量</td>
+					
+					</thead>
+					
+				<c:forEach var="selects" items="${select}">
+<% i += 1;	%>
 					<tr>  
-					<td style="font-size: 15px;">
-							<%
-							i += 1;
-							out.println(i);
-							%>. 交易編號&ensp;:&ensp;${select.record_id}
-						</td>
-						<td style="font-size:15px">商品編號&ensp;:&ensp;${select.pid}&ensp;</td>
-						<td style="font-size:15px">商品名稱&ensp;:&ensp;${select.p_name}&ensp;</td>
-						<td style="font-size:15px">單價&ensp;:&ensp;${select.p_price}&ensp;</td>
-						<td style="font-size:15px">交易時間&ensp;:&ensp;${select.buy_time}&ensp;</td>
-						<td style="font-size:15px">數量&ensp;&ensp;${select.pcount}</td>
+						<td style="font-size:30px;">${selects.record_id}</td>
+						<td style="font-size:30px">${selects.pid}</td>
+						<td style="font-size:30px">${selects.p_name}</td>
+						<td style="font-size:30px">${selects.p_price}</td>
+						<td style="font-size:30px">${selects.buy_time}</td>
+						<td style="font-size:30px">${selects.pcount}</td>
 					</tr>
 				</c:forEach>
 

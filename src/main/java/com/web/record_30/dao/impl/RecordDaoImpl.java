@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +28,7 @@ public class RecordDaoImpl implements IRecordDao {
 	@Override
 	public List<RecordBean> getAllRecords(String buyer){
 		Session session = factory.getCurrentSession();
-		String hql = "FROM RecordBean rb WHERE rb.buyer = :buyer";
+		String hql = "FROM RecordBean rb WHERE rb.buyer = :buyer order by record_id";
 		
 		return session.createQuery(hql,RecordBean.class)
 				.setParameter("buyer", buyer)
@@ -42,8 +43,11 @@ public class RecordDaoImpl implements IRecordDao {
 		Session session = factory.getCurrentSession();
 		RecordBean rb = new RecordBean();
 		System.out.println("rid3 = "+record_id);
-		rb.setRecord_id(record_id);
-		session.delete(rb);
+		String hql="delete from RecordBean r where r.record_id=:record_id";
+		
+		Query queryupdate=session.createQuery(hql)
+					.setParameter("record_id", record_id);
+		queryupdate.executeUpdate();
 		
 	}
 

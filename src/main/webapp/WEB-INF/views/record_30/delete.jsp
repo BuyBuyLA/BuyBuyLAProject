@@ -86,16 +86,14 @@ input, textarea, select {
 </style>
 </head>
 <body>
-	<div style="background-color: rgb(114, 13, 69);">
-		<img src="/project2/image/trademark.png"
-			style="width: 170px; padding-bottom: 0px; margin-bottom: -55px;"
-			alt="tradeMaark">
+	<div style="background: lightblue;">
+	<br>
 		<center>
 			<Input type="text"
 				style="margin-top: -10px; background-color: white; font-size: 33px; width: 780px;">
-			<input type="submit" style="font-size: 28px;" value="搜尋"></Input>
+			<input type="submit" style="font-size: 28px;" value="搜尋" />
 		</center>
-
+<br>
 		<hr>
 	</div>
 
