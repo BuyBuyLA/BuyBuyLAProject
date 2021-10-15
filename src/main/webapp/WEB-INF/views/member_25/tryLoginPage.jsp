@@ -39,17 +39,7 @@
                     <a href="<c:url value='/try/index' />"><input type="submit" id="submitLogin" name='submitLogin' value="確認送出(有包 a /index)(submit)"  style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;"/>
                     </a>
                     <hr>
-                    <a href="<c:url value='/try/index' />"><input type="button" id="submitLogin" name='submitLogin' value="確認送出(有包 a /index)(button)"  style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;"/>
-                    </a>
-                    <hr>
                     
-                    
-
-                    <input type="button" id="btnAdd"  name="submit" value="登入" class="reg">
-					<hr>
-
-                    <input type="submit" id="submitLogin" name='submitLogin' value="確認送出submit"  style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;"/>
-                    </a>
     
       		  </form:form>
 

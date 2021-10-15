@@ -69,7 +69,7 @@ form {
 				<td></td>
 				<!-- <input class="formElem" type="text" name="phone" id="phone"
 					size="30" placeholder="phone"> -->
-                    <form:input id="userPhone" path="userPhone" type='text'
+                    <form:input id="phone" path="userPhone" type='text'
 							class='form:input-large' />
 				</td>
 				<br>
@@ -83,7 +83,7 @@ form {
 				<td></td>
 				<!-- <input class="formElem" type="text" name="idEmail" id="idEmail"
 					size="30" placeholder="E-mail"> -->
-                    <form:input id="userEmail" path="userEmail" type='text'
+                    <form:input id="idEmail" path="userEmail" type='text'
 							class='form:input-large' />
 				<br>
 				<span id="idEmail1" style="color: red;"></span>
@@ -96,7 +96,7 @@ form {
 				<td></td>
 				<!-- <input class="formElem" type="Password" name="Password" id="idPwd"
 					size="30" placeholder="Password"> -->
-                    <form:input id="userPwd" path="userPwd" type='text'
+                    <form:input id="idPwd" path="userPwd" type='text'
 							class='form:input-large' />
 				<br>
 				<span id="idsp" style="color: black;"></span>
@@ -129,8 +129,11 @@ form {
 		<div class="loginarea">
 		
 		<br>
-		<input type="button" id="btnAdd" style="display:none;"  name="submit" value="註冊1" >
-		 <button type="submit" id="btnAdd"  name="submit" value="註冊1" style=""></button>
+
+		
+		<input type="submit" id="submit" style="display:none;"  name="submit" value="註冊" class="reg">
+				
+		<!--  <button type="submit" id="btnAdd"  name="submit" value="儲存修改" style="text-align: center; font-size: 18x;"></button> -->
 				<br><br><br><br><br>
 			<hr>
 			<h3>已有帳號?</h3>
@@ -155,18 +158,18 @@ form {
 	<script src=""></script>
     <script>
 
-        document.getElementById("userEmail").addEventListener('blur', checkEmail);
-        document.getElementById("userPwd").addEventListener('blur', checkPwd);
-        document.getElementById("userPhone").addEventListener('blur', checkPhone);
+        document.getElementById("idEmail").addEventListener('blur', checkEmail);
+        document.getElementById("idPwd").addEventListener('blur', checkPwd);
+        document.getElementById("phone").addEventListener('blur', checkPhone);
         
         
         let checkPhoneTrue = false, checkEmailTrue = false, checkPwdTrue = false;
-        let submitBtn = document.getElementById('btnAdd');
+        let submitBtn = document.getElementById('submit');
      
 
         //驗證手機
         function checkPhone() {
-            let phonee = document.getElementById('userPhone').value;
+            let phonee = document.getElementById('phone').value;
             let regg=new RegExp("^09\\d{8}$");
             let idPhoneSp = document.getElementById("idPhone");
             if (phonee == "") {
@@ -210,7 +213,7 @@ form {
         function checkEmail() {
             console.log("YAA");
             let reg = new RegExp("^[a-z0-9]+([._\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");//正則表達式
-            let emailobj = document.getElementById("userEmail");//要驗證的對象
+            let emailobj = document.getElementById("idEmail");//要驗證的對象
             let emailobjVal = emailobj.value;  //
             let mailsp1 = document.getElementById("idEmail1");
 
@@ -244,7 +247,7 @@ form {
         }
         //驗證密碼
         function checkPwd() {
-            let thePwdObj = document.getElementById("userPwd");
+            let thePwdObj = document.getElementById("idPwd");
             let thePwdObjVal = thePwdObj.value;
             let sp = document.getElementById("idsp");
             let sp1 = document.getElementById("idsp0");
@@ -320,10 +323,34 @@ form {
 
         }
 
-       
+        // function checkDate() {
+        //     let theDateObj = document.getElementById("date");
+        //     console.log(typeof theDateObj)
+        //     let theDateObjVal = theDateObj.value;
+        //     let sp = document.getElementById("idsp3");
+        //     let sp2 = document.getElementById("idsp4");
+        //     console.log(typeof theDateObjVal);
+        //     console.log(theDateObjVal);
+        //     let d = new Date(theDateObjVal);
+        //     console.log(d);
+        //     var year = d.getFullYear();
+        //     var month = d.getMonth() + 1;
+        //     var day = d.getDate();
+        //     console.log(typeof month, day);
+        //     var month2 = theDateObjVal.substr(5, 2);
+        //     console.log(month2);
+        //     if (month == month2) {
+        //         sp.innerHTML = "正確日期";
+        //         sp2.innerHTML = "";
+        //     } else {
+        //         sp.innerHTML = "";
+        //         sp2.innerHTML = " <img src='../Lab07/Images/error.png'>無效日期";
+
+        //     }
+
+        // }
 
     </script>
-	
 
 </body>
 </html>

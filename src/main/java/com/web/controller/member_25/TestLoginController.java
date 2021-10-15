@@ -34,11 +34,11 @@ public class TestLoginController {
 	}
 
 
-	@GetMapping("/zxczc")   //改
-	public String indexDefault() {
-		System.out.println("回首頁");
-		return "member_25/tryIndex";
-	}
+//	@GetMapping("/zxczc")   //改
+//	public String indexDefault() {
+//		System.out.println("回首頁");
+//		return "member_25/tryIndex";
+//	}
 	
 	
 	
@@ -54,7 +54,7 @@ public class TestLoginController {
 		System.out.println("首頁的getmapping ----------->getUserEmail ="+mb.getUserEmail());
 		
 		
-		return "member_25/tryIndex";
+		return "cart_30/TotalHome";
 	}
 	
 	@PostMapping("/try/index")
@@ -64,7 +64,7 @@ public class TestLoginController {
 		System.out.println("有進到POST Index哦-------->UserEmail "+mb.getUserEmail());
 		System.out.println("有進到POST Index哦-------->");
 		
-		return "member_25/tryIndex";
+		return "cart_30/TotalHome";
 	}
 	
 	@GetMapping("/try/add")
@@ -112,7 +112,7 @@ public class TestLoginController {
 		}else if (loginResult==2) {
 			System.out.println("無人使用此帳號 已註冊  ----->");
 			memberService.save(mb);	
-			return "tryIndex";
+			return "cart_30/TotalHome";
 		}
 		
 		return  "member_25/trySignUpPage";
