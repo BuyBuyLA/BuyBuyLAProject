@@ -30,6 +30,9 @@ public interface MemberService {
 
 	void deleteByName(String userEmail);
 	int findIdByEmail(String userEmail);
+	//管理者判斷
+	Boolean memberOrManager(int id);
+	
 //	//前置下拉選單 
 //	List<membershipInformationBean>  getIdentificationList();
 

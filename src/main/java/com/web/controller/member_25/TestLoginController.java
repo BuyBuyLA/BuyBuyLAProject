@@ -22,7 +22,7 @@ import com.web.member_25.model.membershipInformationBean;
 import com.web.member_25.service.MemberService;
 
 @Controller
-@SessionAttributes({"loginSession","memberUiDefault"})
+@SessionAttributes({"loginSession","memberUiDefault","managerSession"})
 public class TestLoginController {
 	
 	MemberService memberService;
@@ -166,11 +166,24 @@ public class TestLoginController {
 			System.out.println("login結果 = "+memberService.login(userEmail, userPwd));
 			
 			if (loginResult==1) {
+				
+				int id=0; Boolean isMamber=true;
+				id=memberService.findIdByEmail(userEmail);  //ccccccccccccc
+				isMamber= memberService.memberOrManager(id);   //判斷是使用者還是管理者
+				System.out.println("isMamber------------>>管理者?----->"+isMamber);
+				if (isMamber==false) {				
+					mb2.setUserEmail(userEmail);
+					mb2.setUserPwd(userPwd); 
+					model.addAttribute("managerSession",mb2);
+					return "redirect:/try/manage";
+				}
 				System.out.println("登入成功 userEmail  ----->"+userEmail);
 				mb2.setUserEmail(userEmail);
 				mb2.setUserPwd(userPwd); 
 				model.addAttribute("loginSession",mb2);
-				return "redirect:/member_25/try/index";  //登入成功
+				
+				
+				return "redirect:/try/index";  //登入成功
 				
 				
 			}else if (loginResult==2) {
@@ -187,9 +200,10 @@ public class TestLoginController {
 	    public String tologout(HttpSession session,HttpServletRequest request,HttpServletResponse response,SessionStatus sessionStatus) {
 	        session.removeAttribute("loginSession");
 	        session.removeAttribute("memberUiDefault");
+	        session.removeAttribute("managerSession");
 	        System.out.println("logout:"+session.getAttribute("loginSession"));
 	        sessionStatus.setComplete(); 
-	        System.out.println("已清除 登入狀態loginSession");
+	        System.out.println("已清除 登入狀態loginSession+managerSession+memberUiDefault");
 	        return "redirect:/";   //回乾淨首頁成功 讚
 	    }
 		
@@ -265,18 +279,22 @@ public class TestLoginController {
 		}
 		
 		
-//		@PostMapping("/try/member_Ui")
-//		public String tryProcessMemberUpdate(
-//				@ModelAttribute("loginSession") membershipInformationBean mb,
-//				Model model) {
-////			membershipInformationBean mb=new membershipInformationBean();
-////			mb.setUserEmail("");
-////			mb.setUserPwd(""); 
-////			model.addAttribute("loginSession",mb);
-//			System.out.println("membershipInformationBean --getUserEmail----->"+mb.getUserEmail());
-//			 model.addAttribute("memberUiDefault",mb);
-//			return "tryMember_Ui";
-//		}
+		
+		
+		//管理者專用區
+		
+		@GetMapping("/try/manage")
+		public String manager(
+				@ModelAttribute("managerSession") membershipInformationBean mb,
+				Model model) {
+			System.out.println("managerSession --manager----->"+mb.getUserEmail());
+			
+			
+			return "manager_Ui";
+		}
+		
+		
+
 		
 		
 		

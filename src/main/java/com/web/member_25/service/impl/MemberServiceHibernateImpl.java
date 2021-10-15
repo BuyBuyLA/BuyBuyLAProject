@@ -89,6 +89,12 @@ public class MemberServiceHibernateImpl implements MemberService {
 		
 	}
 
+	@Override
+	public Boolean memberOrManager(int id) {
+		
+		return dao.memberOrManager(id);
+	}
+
 //	@Override   //下拉選單
 //	public List<membershipInformationBean> getIdentificationList() {
 //		return dao.getIdentificationList();

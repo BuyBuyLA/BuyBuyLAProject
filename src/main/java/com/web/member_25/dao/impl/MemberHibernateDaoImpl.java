@@ -258,6 +258,32 @@ public class MemberHibernateDaoImpl implements MemberDao {
 		
 	}
 
+	@Override
+	public Boolean memberOrManager(int id) {
+		String m="";
+		
+		String sql = "SELECT Identification FROM membershipInformationBean WHERE id=:id";
+		membershipInformationBean mb=new membershipInformationBean();
+		try {
+			Session session = factory.getCurrentSession();
+			System.out.println("開始進行memberOrManager找管理者---------------------->");
+			Query query = session.createQuery(sql,String.class);
+			query.setParameter("id", id);		
+				query.getResultList();   //must
+				m=(String) query.getSingleResult();
+			  System.out.println("getSingleResult===========manager===========>"+query.getSingleResult());
+			  //  code end
+			  if (m.equals("manager")) {
+				  return false;
+			  }
+			  return true;
+			} catch (Throwable t) {
+			  System.out.println("出錯拉!!!!66!!!!!!!");
+			  throw t;
+			}
+		
+	}
+
 //	//前置的下拉選單
 //	@Override
 //	public List<membershipInformationBean> getIdentificationList() {

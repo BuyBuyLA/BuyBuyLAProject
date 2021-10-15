@@ -369,8 +369,8 @@ dt {
 	</nav>
 	<sql:setDataSource var="snapshot"
 		driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		url="jdbc:sqlserver://localhost:1433;databaseName=shopping" user="sa"
-		password="zxcv265358" />
+		url="jdbc:sqlserver://localhost:1433;databaseName=BuyBuyLa" user="sa"
+		password="password" />
 
 	<sql:query dataSource="${snapshot}" var="result">
 SELECT * from PRODUCT;
