@@ -23,7 +23,7 @@ import com.web.record_30.model.RecordBean;
 
 
 @Controller
-@SessionAttributes({"loginSession","memberUiDefault","managerSession"})
+//@SessionAttributes({"loginSession","memberUiDefault","managerSession"})
 public class CartController {
 	CartService cartService;
 
@@ -36,9 +36,11 @@ public class CartController {
 
 	@GetMapping("/test")
 	public String home(
-			@ModelAttribute("loginSession") membershipInformationBean mb,
+//			@ModelAttribute("loginSession") membershipInformationBean mb,
 			Model model) {
-		 return "cart_30/TotalHome";
+
+		 return "product_11/products";
+		 
 	}
 	
 	
@@ -55,7 +57,7 @@ public class CartController {
 			cartService.add(id);	
 		}
 		model.addAttribute("additem");
-		return "cart_30/TotalHome";
+		return "redirect:/products";
 	}
 	
 	
@@ -128,7 +130,7 @@ public class CartController {
 	@GetMapping("/removeAllCart")
 	public String removeAllCart(Model model) {
 		cartService.deleteAll();
-		 return "cart_30/TotalHome";
+		 return "product_11/products";
 	}
 	
 	

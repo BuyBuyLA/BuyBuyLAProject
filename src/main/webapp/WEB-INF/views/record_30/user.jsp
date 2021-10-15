@@ -84,7 +84,7 @@ span {
 				<i class="fas fa-search"></i>查詢
 			</button>
 
-		</a> <a href="<c:url value='/update' />">
+		</a> <a href="<c:url value='/update30' />">
 
 			<button class='btn btn-default' type='submit' value='submit'
 				style="width: 120px; height: 50px; font-size: 30px;">

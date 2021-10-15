@@ -72,7 +72,7 @@ public class RecordController {
 	
 	
 	
-	@GetMapping("/update")
+	@GetMapping("/update30")
 	public String update(@ModelAttribute("RecordBean") RecordBean record ,Model model ) {
 		RecordBean recordBean =new RecordBean();
 		model.addAttribute("update",record);
@@ -84,7 +84,7 @@ public class RecordController {
 		
 	}
 	
-	@PostMapping("/update")
+	@PostMapping("/update30")
 	public String update2(@ModelAttribute("update") RecordBean record ,Model model) {
 		Integer record_id = record.getRecord_id();
 		Integer pid = record.getPid();

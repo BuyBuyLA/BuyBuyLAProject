@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.web.cart_30.dao.CartDao;
 import com.web.cart_30.model.Cart;
-import com.web.cart_30.model.Product;
 
 import com.web.cart_30.model.RidCount;
+import com.web.product_11.model.Product;
 import com.web.record_30.model.RecordBean;
 
 
@@ -36,11 +36,11 @@ public class CartDaoImpl implements CartDao {
 		Session session = factory.getCurrentSession();
 		Product pb = session.get(Product.class, pid);
 
-		Cart cb = new Cart(pid, pb.getP_img(), pb.getP_name(), pb.getP_price(), 1,"asd123",pb.getSeller());
+		Cart cb = new Cart(pid,pb.getProductName(), pb.getPrice(), 1,"asd123",pb.getSerller() ,pb.getCoverImage());
 //		System.out.println("******************************");
 		session.save(cb);
 
-		System.out.println(pb.getPid() + "," + pb.getP_name() + "," + pb.getP_img() + "," + pb.getP_price());
+		System.out.println(pb.getProductId() + "," + pb.getProductName() + "," + pb.getCoverImage() + "," + pb.getPrice());
 
 	}
 
