@@ -1,4 +1,4 @@
-package com.web.cart_30.controller;
+package com.web.controller.cart_30;
 
 
 import java.time.LocalDateTime;
@@ -28,11 +28,11 @@ public class CartController {
 		this.cartService = cartService;
 	}
 
-	@GetMapping("/")
-	public String home0(Model model) {
-		System.out.println("ㄎㄎc");
-		 return "cart_30/TotalHome";
-	}
+//	@GetMapping("/xxx")//改
+//	public String home0(Model model) {
+//		System.out.println("ㄎㄎc");
+//		 return "cart_30/TotalHome";
+//	}
 
 	@GetMapping("/test")
 	public String home(Model model) {
