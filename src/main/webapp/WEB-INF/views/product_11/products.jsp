@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -28,19 +29,15 @@
     <nav>
 		<ul class="dropdown">
 		<li> Hello!!!!!!!<a href="<c:url value='/try/member_Ui' />"> ${loginSession.userEmail}</a></li>
-			<li><a href="<c:url value='/cart' />"> 我的購物車 (<i id="ccount">0</i>)
+			<li><a href="<c:url value='/cart' />">我的購物車<i id="ccount"></i>
 			</a></li>
 			<li><a href="<c:url value='/user' />">購物記錄管理</a></li>
 			<li><a href="main.html">活動專區</a></li>
 			<li><a href="Intelligence32.jsp">團購專區</a></li>
-			<li><a href="<c:url value='/try/login' />">會員登入</a></li>
-			<li><a href="<c:url value='/try/add' />">會員註冊</a></li>			
-			<li> <a href="<c:url value='/try/logout' />">登出會員</a></li>
+			<li><a href="UserLogin.jsp">會員登入</a></li>
+			<li><a href="Form.jsp">會員註冊</a></li>
 		</ul>
 	</nav>
-    
-    
-    
     
     
     
@@ -104,17 +101,22 @@
         <a href="<c:url value='/' />">回首頁</a>
     </div> 
     
-    <script>
-var count=0;
-$('.count').each(function(){
-	$(this).html;
-	var a = parseInt($(this).html());
-	count=count+a
+<%--     	<sql:setDataSource var="snapshot" --%>
+<%-- 		driver="com.microsoft.sqlserver.jdbc.SQLServerDriver" --%>
+<%-- 		url="jdbc:sqlserver://localhost:1433;databaseName=shopping" user="sa" --%>
+<%-- 		password="zxcv265358" /> --%>
+		
+		
+<%--  <sql:query dataSource="${snapshot}" var="rs"> --%>
+<!-- SELECT * from Cart; -->
+<%-- </sql:query> --%>
+<%-- 		<c:forEach var="row" items="${rs.rows}"> --%>
+<%-- 			<span class="count" style="display: none"> ${row.count}</span> --%>
 
-	})
+<%-- 		</c:forEach> --%>
+<!--  <script> -->
 
-$('#ccount').html(count)
-</script>
+<!-- </script> -->
 </body>
 </html>
     
