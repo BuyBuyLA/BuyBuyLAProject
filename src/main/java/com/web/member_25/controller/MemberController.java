@@ -250,7 +250,7 @@ System.out.println("=======================================");
 			) {
 		membershipInformationBean mb=new membershipInformationBean();
 		
-		
+		System.out.println("merge main");
 		System.out.println(" userGender= "+userGender);
 		//設定預設值
 	
