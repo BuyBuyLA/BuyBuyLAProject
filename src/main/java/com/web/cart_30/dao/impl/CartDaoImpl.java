@@ -11,8 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.web.cart_30.dao.CartDao;
 import com.web.cart_30.model.Cart;
 import com.web.cart_30.model.Product;
-import com.web.cart_30.model.RecordBean;
+
 import com.web.cart_30.model.RidCount;
+import com.web.record_30.model.RecordBean;
 
 
 

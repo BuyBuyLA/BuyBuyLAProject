@@ -12,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.web.cart_30.dao.CartDao;
 import com.web.cart_30.model.Cart;
-import com.web.cart_30.model.RecordBean;
+
 import com.web.cart_30.model.RidCount;
 import com.web.cart_30.service.CartService;
+import com.web.record_30.model.RecordBean;
 
 
 

@@ -1,4 +1,4 @@
-package com.web.cart_30.controller;
+package com.web.controller.cart_30;
 
 
 import java.time.LocalDateTime;
@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.cart_30.model.Cart;
-import com.web.cart_30.model.RecordBean;
+
 import com.web.cart_30.service.CartService;
+import com.web.record_30.model.RecordBean;
 
 
 
@@ -28,10 +29,6 @@ public class CartController {
 		this.cartService = cartService;
 	}
 
-	@GetMapping("/")
-	public String home0(Model model) {
-		 return "cart_30/TotalHome";
-	}
 
 	@GetMapping("/test")
 	public String home(Model model) {

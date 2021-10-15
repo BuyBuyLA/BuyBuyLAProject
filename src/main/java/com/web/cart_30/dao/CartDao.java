@@ -1,6 +1,6 @@
 package com.web.cart_30.dao;
 
-import com.web.cart_30.model.RecordBean;
+import com.web.record_30.model.RecordBean;
 
 public interface CartDao {
 	public void addItemByid(int pid);

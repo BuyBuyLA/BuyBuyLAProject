@@ -12,7 +12,7 @@ public class RecordBean {
 private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer record_id;
 	
 	private Integer pid;
