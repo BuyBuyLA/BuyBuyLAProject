@@ -1,4 +1,4 @@
-package com.web.record_30.model;
+package com.web.cart_30.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ public class RecordBean {
 private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer record_id;
 	
 	private Integer pid;
@@ -29,7 +29,7 @@ private static final long serialVersionUID = 1L;
 
 	public RecordBean(Integer record_id, Integer pid, String p_name, Integer p_price, String buy_time, String buyer,
 			String seller, Integer pcount) {
-
+		super();
 		this.record_id = record_id;
 		this.pid = pid;
 		this.p_name = p_name;

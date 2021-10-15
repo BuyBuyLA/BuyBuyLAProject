@@ -27,8 +27,6 @@ public class RecordController {
 	
 	
 	
-	
-	
 	@GetMapping({"/user"})
 	public String record(Model model) {
 		 return "record_30/user";

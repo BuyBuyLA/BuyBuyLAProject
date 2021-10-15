@@ -23,7 +23,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 		//視圖邏輯器
 		InternalResourceViewResolver resolver= new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/"); //前導字
-		resolver.setSuffix(".jsp"); //\
+		resolver.setSuffix(".jsp"); //
 		return resolver;
 	}
 	
