@@ -2,6 +2,8 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,51 +26,115 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet">
-
+<script type="text/javascript" src="cookie.js"></script>
 <style>
-body {
-	font-family: "微軟正黑體";
-	background-color: rgb(203, 218, 218);
-	align-items: center;
-	justify-content: center;
-	position: relative;
+* {
+	margin: 10px;
+	padding: 0;
 }
 
-td {
-	background-color: white;
+.container {
+	width: 1200px;
+	margin: 0 auto;
 }
 
-th {
-	background-color: rgb(126, 199, 199);
+h1 {
+	text-align: left;
+	font-size: 250%;
 }
 
-.wrap {
+h3 {
+	margin: 20px 0;
+}
+
+table {
+	border-collapse: collapse;
+	width: 1200px;
+	margin-top: 20px;
 	text-align: center;
-	margin-top: 50px;
+}
+
+table img {
+	width: 100px;
+	padding: 5px
+}
+
+table thead {
+	font: bold 22px/40px "微软雅黑";
+	background-color: lightblue;
+	color: #fff;
+}
+
+table.hide {
+	display: none;
+}
+
+/* table .ck {
+	width: 22px;
+	height: 22px;
+	vertical-align: middle;
+} */
+table tbody input {
+	width: 20px;
+	text-align: center;
+}
+
+.up, .down {
+	width: 20px;
+}
+
+.box {
+	width: 100%;
+	height: 200px;
+	background-color: lightblue;
+	font: bold 36px/200px "微软雅黑";
+	text-align: center;
+}
+
+.box.hide {
+	display: none;
+}
+
+h2 {
+	float: right;
+	padding: 20px;
+}
+
+h2.hide {
+	display: none;
+}
+
+h2 span {
+	font: bold 33px/33px "微软雅黑";
+	color: red;
 }
 
 .submit {
-	width: 200px;
-	height: 60px;
-	font-family: 'Roboto', sans-serif;
+	margin: auto;
+	padding: auto;
 	font-size: 20px;
-	text-transform: uppercase;
-	letter-spacing: 2.5px;
-	font-weight: 500;
-	color: #000;
-	background-color: #fff;
-	border: none;
-	border-radius: 45px;
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-	transition: all 0.3s ease 0s;
-	cursor: pointer;
-	outline: none;
 }
 
-.submit:hover {
-	background-color: #33779e;
-	color: #fff;
-	transform: translateY(-7px);
+.title {
+	background-color: lightblue;
+	width: 1200px;
+	height: 120px;
+	display: block;
+	padding: 20px 0;
+	left: 0%;
+	top: 0%
+}
+
+.search {
+	position: absolute;
+	left: 30%;
+	top: 1%
+}
+
+#search {
+	width: 800px;
+	height: 40px;
+	font-size: 20px;
 }
 </style>
 </head>
@@ -94,7 +160,7 @@ th {
 		</div>
 
 		<h3>
-			<a href="TotalHome.jsp">返回商品頁面</a><br> <a href="cart.jsp">返回上一頁</a>
+			<a href="<c:url value='/test' />">返回商品頁面</a><br> <a href="<c:url value='/cart' />">返回上一頁</a>
 		</h3>
 		<table>
 			<thead>
@@ -126,7 +192,7 @@ th {
 		<br> <br> <br> <br> <br> <br>
 		<center>
 
-			<a href="fin.jsp"><input type="submit" name="confirm"
+			<a href="<c:url value='/fin' />"><input type="submit" name="confirm"
 				value="確認送出" class="submit"></a>
 		</center>
 	</div>

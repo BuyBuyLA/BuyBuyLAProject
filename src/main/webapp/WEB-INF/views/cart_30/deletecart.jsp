@@ -13,9 +13,13 @@
 <% String id=request.getParameter("id"); 
 	request.getSession(true).setAttribute("PID", id);
 %>
-<sql:update sql="delete from Cart where pid='${PID}' " var="delete"
-	dataSource="${snapshot}" />
-<%
+<sql:update sql="delete from Cart where pid='${PID}' " var="delete" dataSource="${snapshot}"/>
+ <%
 request.getSession(true).removeAttribute("PID");
-request.getRequestDispatcher("/cart.jsp").forward(request, response);
+
 %>
+ <script>
+                
+                setTimeout("location.href='cart'",0)
+
+    </script>

@@ -16,5 +16,6 @@ public class HomeController {
 	public String indexDefault() {
 		System.out.println("回首頁");
 		return "member_25/tryIndex";
-	}
 }
+}
+
