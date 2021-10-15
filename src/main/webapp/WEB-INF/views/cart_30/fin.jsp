@@ -169,7 +169,7 @@ h2 span {
 					<td>NT<span class="total" >${row.count*row.P_price}</span></td>	
 				</tr>
 				
-		<sql:update sql="INSERT INTO  record (PID,P_name,P_price,pcount) VALUES('${row.PID}','${row.P_name}','${row.P_price}','${row.count}')" var="count" dataSource="${snapshot}"/>
+<%-- 		<sql:update sql="INSERT INTO  record (PID,P_name,P_price,pcount) VALUES('${row.PID}','${row.P_name}','${row.P_price}','${row.count}')" var="count" dataSource="${snapshot}"/> --%>
 		</c:forEach>
 			</tbody>
 		</table>

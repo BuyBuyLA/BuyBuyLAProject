@@ -10,7 +10,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home0(Model model) {
-		 return "cart_30/home";
+		 return "cart_30/TotalHome";
 	}
 
 }
