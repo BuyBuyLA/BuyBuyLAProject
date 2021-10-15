@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -87,8 +88,37 @@ public class MemberHibernateDaoImpl implements MemberDao {
 
 	@Override
 	public void update(membershipInformationBean mb) {
-		Session session = factory.getCurrentSession();
-		session.saveOrUpdate(mb);
+		String hql="UPDATE membershipInformationBean m "
+				+ "set m.userPhone=:userPhone,"
+				+ "m.userName=:userName,"
+				+ "m.userGender=:userGender,"
+				+ "m.address=:address "   //,head_shot=:head_shot
+				+ "WHERE m.userEmail=:userEmail"; 
+		  System.out.println("進入update------mb.getUserEmail----->"+mb.getUserEmail());
+		  System.out.println("進入update------mb.getUserPhone----->"+mb.getUserPhone());
+		  System.out.println("進入update------mb.getUserName----->"+mb.getUserName());
+		  System.out.println("進入update------mb.getUserGender----->"+mb.getUserGender());
+		  System.out.println("進入update------mb.getAddress----->"+mb.getAddress());
+//		  System.out.println("進入update------mb.getHead_shot----->"+mb.getHead_shot());
+		
+			try {
+				Session session = factory.getCurrentSession();
+				Query query = session.createQuery(hql)
+						.setParameter("userEmail", mb.getUserEmail())
+						.setParameter("userPhone", mb.getUserPhone())
+						.setParameter("userName", mb.getUserName())
+						.setParameter("userGender", mb.getUserGender())
+						.setParameter("address", mb.getAddress());
+//						.setParameter("head_shot", mb.getHead_shot());
+						query.executeUpdate();
+						System.out.println("更新成功拉");
+				} catch (Throwable t) {
+				  System.out.println("出錯拉");
+				  throw t;
+				}
+		
+		System.out.println("update完畢");
+
 	}
 
 	public int login(String userEmail, String userPwd) {
@@ -153,30 +183,23 @@ public class MemberHibernateDaoImpl implements MemberDao {
 	public membershipInformationBean getMemberData(String userEmail) {
 		Session session = factory.getCurrentSession();
 		membershipInformationBean mb=new membershipInformationBean();
-		System.out.println("DAO--------getMemberData---------->"+userEmail);
-		
-//		Query query = session.createQuery(
-//				"FROM membershipInformationBean where userEmail=:userEmail",
-//				membershipInformationBean.class);
-//		query.setParameter("userEmail", userEmail);
-		
+		System.out.println("DAO--------getMemberData---------->"+userEmail);	
 		
 		String sql = "select userEmail,userPwd,userPhone,userName,userGender,address,head_shot,Identification "
 				+ "from membershipInformation where userEmail=:userEmail";
 		// addEntity()可以告訴Hibernate你想要封裝成物件的型別，然後自動為你封裝
-		Query query = session.createSQLQuery(sql).addEntity(membershipInformationBean.class);
-						query.setParameter("userEmail", userEmail);
-						System.out.println("DAO--------getMemberData---------->Query done ");
-		List<membershipInformationBean> list = query.getResultList();
-		System.out.println("DAO--------getMemberData---------->list done ");
-		for(membershipInformationBean mbBean : list){
-		System.out.println("+DAO++  getMemberData  ++++getUserPwd+++++++++++"+mbBean.getUserPwd());
-		System.out.println("+DAO++  getMemberData  ++++getUserPhone+++++++++++"+mbBean.getUserPhone());
-		}
-		System.out.println("DAO--------getMemberData---------->for done ");
+		Query query = session.createQuery(sql,membershipInformationBean.class);
+				query.setParameter("userEmail", userEmail);			
+
+			System.out.println("DAO--------getMemberData---------->Query done ");
+//		for(membershipInformationBean mbBean : list){
+//		System.out.println("+DAO++  getMemberData  ++++getUserPwd+++++++++++"+mbBean.getUserPwd());
+//		System.out.println("+DAO++  getMemberData  ++++getUserPhone+++++++++++"+mbBean.getUserPhone());
+//		}
 		
-//		membershipInformationBean mb=session.get(membershipInformationBean.class, userEmail);
-		return mb;
+//		System.out.println("DAO--------getMemberData---------->for done ");
+		
+		return (membershipInformationBean) query;
 	}
 	
 	@Override
@@ -188,6 +211,51 @@ public class MemberHibernateDaoImpl implements MemberDao {
 		System.out.println("DAO---------getMemberData2 做完拉");
 //		membershipInformationBean mb=session.get(membershipInformationBean.class, userEmail);
 		return mb;
+	}
+
+	@Override
+	public void deleteByName(String userEmail) {
+//		Session session = factory.getCurrentSession();
+		String sql = "DELETE FROM membershipInformationBean WHERE userEmail=:userEmail";
+		// addEntity()可以告訴Hibernate你想要封裝成物件的型別，然後自動為你封裝
+//		Query query = session.createQuery(sql,membershipInformationBean.class);
+//				query.setParameter("userEmail", userEmail);		
+				
+				try {
+					Session session = factory.getCurrentSession();
+					  // your code
+					Query query = session.createQuery(sql);
+					query.setParameter("userEmail", userEmail);		
+					  System.out.println(query.executeUpdate());
+					  // your code end
+
+					} catch (Throwable t) {
+					  System.out.println("出錯拉");
+					  throw t;
+					}
+	}
+
+	@Override
+	public int findIdByEmail(String userEmail) {
+		String sql = "SELECT id FROM membershipInformationBean WHERE userEmail=:userEmail";
+		int pk=0;
+		membershipInformationBean mb=new membershipInformationBean();
+		try {
+			Session session = factory.getCurrentSession();
+			System.out.println("開始進行email找ID---------------------->");
+			Query query = session.createQuery(sql,Integer.class);
+			query.setParameter("userEmail", userEmail);		
+				query.getResultList();   //must
+				pk=(int) query.getSingleResult();
+			  System.out.println("getSingleResult======================>"+query.getSingleResult());
+			  //  code end
+			  return pk;
+			} catch (Throwable t) {
+			  System.out.println("出錯拉!!!!!!!!!!!");
+			  throw t;
+			
+			}
+		
 	}
 
 //	//前置的下拉選單

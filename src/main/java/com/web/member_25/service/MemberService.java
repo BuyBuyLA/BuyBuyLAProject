@@ -27,8 +27,9 @@ public interface MemberService {
 	
 	membershipInformationBean getMemberData(String userEmail);
 	membershipInformationBean getMemberData2(String userEmail);
-	
-	
+
+	void deleteByName(String userEmail);
+	int findIdByEmail(String userEmail);
 //	//前置下拉選單 
 //	List<membershipInformationBean>  getIdentificationList();
 

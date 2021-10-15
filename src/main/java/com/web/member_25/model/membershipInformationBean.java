@@ -14,24 +14,43 @@ public class membershipInformationBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	@Column(name="USEREMAIL")
+	@Column(name="userEmail")
 	String userEmail;
-	@Column(name="USERPHONE")
+	@Column(name="userPhone")
 	String userPhone;
-	@Column(name="USERPWD")
+	@Column(name="userPwd")
 	String userPwd;
-	@Column(name="USERNAME")
+	@Column(name="userName")
 	String userName;
-	@Column(name="USERGENDER")
+	@Column(name="userGender")
 	String userGender;
-	@Column(name="ADDRESS")
+	@Column(name="address")
 	String address;
-	@Column(name="HEAD_SHOT")
+	@Column(name="head_shot")
 	String head_shot;
-	@Column(name="IDENTIFICATION")
+	@Column(name="Identification")
 	String Identification;
 	
 	
+	public membershipInformationBean(Integer id, String userEmail, String userPhone, String userPwd, String userName,
+			String userGender, String address, String head_shot, String identification) {
+		this.id = id;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.userGender = userGender;
+		this.address = address;
+		this.head_shot = head_shot;
+		this.Identification = identification;
+	}
+	
+	
+	public membershipInformationBean() {
+		
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

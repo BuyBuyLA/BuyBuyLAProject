@@ -22,7 +22,7 @@ import com.web.member_25.model.membershipInformationBean;
 import com.web.member_25.service.MemberService;
 
 @Controller
-@SessionAttributes("loginSession")
+@SessionAttributes({"loginSession","memberUiDefault"})
 public class TestLoginController {
 	
 	MemberService memberService;
@@ -185,7 +185,7 @@ public class TestLoginController {
 		@RequestMapping("/try/logout")
 	    public String tologout(HttpSession session,HttpServletRequest request,HttpServletResponse response,SessionStatus sessionStatus) {
 	        session.removeAttribute("loginSession");
-//	        session.removeAttribute("date");
+	        session.removeAttribute("memberUiDefault");
 	        System.out.println("logout:"+session.getAttribute("loginSession"));
 	        sessionStatus.setComplete(); 
 	        System.out.println("已清除 登入狀態loginSession");
@@ -199,13 +199,68 @@ public class TestLoginController {
 			System.out.println("membershipInformationBean --getUserEmail----->"+mb.getUserEmail());
 			membershipInformationBean mb2=new membershipInformationBean();
 
-			String userEmail=mb.getUserEmail();
-			System.out.println("string指定值時出錯");
-			mb2=memberService.getMemberData(userEmail);
+			String userEmail=mb.getUserEmail();		
+			
+			//how to find id
+		int id=0;
+		id=memberService.findIdByEmail(userEmail);  //ccccccccccccc
+		System.out.println("=========getid-======================="+mb2.getId());
+		
+		System.out.println("*--------user pk id---------------------------->"+id);
+			//-findID
+			mb2=memberService.findById(id);
+			
 			System.out.println("getUserEmail --getMemberData2--><--->"+mb2.getUserEmail());
 			System.out.println("getUserPwd --getMemberData2--><--->"+mb2.getUserPwd());
-			 model.addAttribute("memberUiDefault",mb);
+			 model.addAttribute("memberUiDefault",mb2);
 			return "tryMember_Ui";
+		}
+		
+		@PostMapping("/try/member_Ui")
+		public String tryProcessMemberUpdate(
+				@ModelAttribute("memberUiDefault") membershipInformationBean mb,
+//				@RequestParam String userEmail,
+				BindingResult result,
+				RedirectAttributes redirectAttributes,
+				Model model) {
+			
+			//-------------------------------------------
+			//檢查有沒有違法欄位
+			 String[] suppressedFields = result.getSuppressedFields();
+			    if (suppressedFields.length > 0) {
+			      throw new RuntimeException("嘗試傳入不允許的欄位: " + 
+			    //把陣列裡面的元素用,隔開並轉成字串
+			      StringUtils.arrayToCommaDelimitedString(suppressedFields));
+			 }		
+			System.out.println("==========進入tryProcessMemberUpdate=====================");
+			membershipInformationBean mb2=new membershipInformationBean();
+
+				mb2.setUserEmail(mb.getUserEmail());
+				mb2.setUserPwd(mb.getUserPwd()); 
+				mb2.setAddress(mb.getAddress());
+				mb2.setHead_shot(mb.getHead_shot());
+				mb2.setUserGender(mb.getUserGender());
+				mb2.setUserPhone(mb.getUserPhone());
+				mb2.setUserName(mb.getUserName());
+				mb2.setIdentification(mb.getIdentification());
+				model.addAttribute("memberData",mb2);
+			
+			memberService.update(mb2);
+				System.out.println("update success");
+			return "tryMember_Ui";
+		}
+		
+		@GetMapping("/try/delete")
+		public String tryMemberDelete(
+				@ModelAttribute("loginSession") membershipInformationBean mb,
+				HttpSession session,HttpServletRequest request,HttpServletResponse response,SessionStatus sessionStatus
+				,Model model) {
+			System.out.println("membershipInformationBean --tryMemberDelete----->");
+			
+			memberService.deleteByName(mb.getUserEmail());
+			
+			tologout(session, request, response, sessionStatus);
+			return "redirect:/";
 		}
 		
 		

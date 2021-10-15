@@ -78,6 +78,17 @@ public class MemberServiceHibernateImpl implements MemberService {
 		return dao.getMemberData2(userEmail);
 	}
 
+	@Override
+	public void deleteByName(String userEmail) {
+		dao.deleteByName(userEmail);
+	}
+
+	@Override
+	public int findIdByEmail(String userEmail) {
+		return dao.findIdByEmail(userEmail);
+		
+	}
+
 //	@Override   //下拉選單
 //	public List<membershipInformationBean> getIdentificationList() {
 //		return dao.getIdentificationList();

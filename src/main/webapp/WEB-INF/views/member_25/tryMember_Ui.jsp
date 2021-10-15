@@ -89,7 +89,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
  <div class="leftSide">
  <h1 class="p">我的帳戶</h1>
- <a  style="color: red; font-size: 21px;"  href="./MemberUiDelete.jsp">刪除帳號</a><br>
+ <a style="color: red; font-size: 21px;"  href="<c:url value='/try/delete' />">刪除會員</a><BR>
   <a style="color: red; font-size: 21px;" href="./user.jsp">購買紀錄管理</a>
  
 </div>
@@ -101,7 +101,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
  <div>
     
-    <form:form method='POST' modelAttribute="loginSessionBean"
+    <form:form method='POST' modelAttribute="memberUiDefault"
     class='form-horizontal' enctype="multipart/form-data">
     <!-- 檔案上傳的標籤一定要有enctype="multipart/form-data -->
 
@@ -112,8 +112,9 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
  	<td>帳號</td>
  	<td> 
     <!--放從DB取出的資料-->         
-    <input id="userName" path="userName" type='text' class='inputClass' readonly="readonly" />
-    HI!!! ${loginSessionBean.userEail} 
+    Hi!!! &nbsp;&nbsp;  ${memberUiDefault.userEmail} 
+   <br> pwd----> ${memberUiDefault.userPwd} 
+   
 
 	</td> 
  </tr>
@@ -122,9 +123,9 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
  	<td> 
  	<label for="proName"></label>
    <!--放從DB取出的資料-->         
-  
+  	 ${memberUiDefault.userName} 
    &nbsp;&nbsp;/&nbsp;&nbsp;
-   
+   <form:input id="userName" path="userName" type='text'  style="width: 250px; height: 30px;" />
    
  	</td> 
  </tr>
@@ -134,9 +135,9 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
    <td>手機號碼</td>
    <td>
     <!--放從DB取出的資料-->         
-    
+     ${memberUiDefault.userPhone} 
     &nbsp;&nbsp;/&nbsp;&nbsp;  
-    
+    <form:input id="userPhone" path="userPhone" type='text'  style="width: 250px; height: 30px;" />
     
    </td>
    </tr>
@@ -144,23 +145,37 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
    <tr>
     <td>性別</td>
      <td>
-       <!--放從DB取出的資料-->     &nbsp;&nbsp;/&nbsp;&nbsp; 
-       <label>  <input class="option-input radio" type="radio" name="uiGender" id="uiGender "value="男性">  
-       男性</label> 
-    <label>      <input class="option-input radio" type="radio" name="uiGender" id="uiGender "value="男性">
-    女性</label>
-    
-        
-     
+       <!--放從DB取出的資料-->
+        ${memberUiDefault.userGender} 
+            &nbsp;&nbsp;/&nbsp;&nbsp; 
+       <label>  <form:radiobutton path="userGender" value="男性" label="男性" /> 
+       	</label> 
+    <label>     <form:radiobutton path="userGender" value="女性" label="女性" /> 
+    	</label>  
      </td>
      </tr>
+     
+     
+     
+     <tr>
+ 	<td>地址</td>
+ 	<td> 
+ 	<label for="address"></label>
+   <!--放從DB取出的資料-->         
+  	 ${memberUiDefault.address} 
+   &nbsp;&nbsp;/&nbsp;&nbsp;
+   <form:input id="address" path="address" type='text'  style="width: 250px; height: 30px;" />
+   
+ 	</td> 
+ </tr>
    
    
  </table>
  
  <p>&nbsp;</p>
+ <a href="<c:url value='/try/index' />?userEmail= ${memberUiDefault.userEmail} ">
  <input type="submit" id="submitRewrite" class="submitBtn" name="submitRewrite" style="text-align: center; font-size: 18x;"  value="儲存修改"/>
-  
+  </a>
 
 
 
