@@ -30,7 +30,7 @@ public class CartController {
 
 	@GetMapping("/")
 	public String home0(Model model) {
-		System.out.println("ㄎㄎ");
+		System.out.println("ㄎㄎc");
 		 return "cart_30/TotalHome";
 	}
 
