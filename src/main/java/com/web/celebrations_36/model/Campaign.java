@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @Entity
 @Table(name="campaign")
 public class Campaign implements Serializable {
@@ -27,7 +28,8 @@ public class Campaign implements Serializable {
 	private String name;
 	private String description;
 	private String note;
-	private Date date1;
+//	@DateTimeFormat(pattern="yyyy-MM-dd") 
+	private String date1;
 	private Blob coverImage;
 	private String fileName;
 	@Transient
@@ -35,7 +37,7 @@ public class Campaign implements Serializable {
 	
 
 	public Campaign(int id, String url, String name, String description, String note, Blob coverImage,
-			String fileName,Date date1, MultipartFile productImage) {
+			String fileName,String date1, MultipartFile productImage) {
 		super();
 		this.id = id;
 		this.url = url;
@@ -54,13 +56,16 @@ public class Campaign implements Serializable {
 	}
 
 
-	public Date getDate() {
+
+
+
+	public String getDate1() {
 		return date1;
 	}
 
 
-	public void setDate(Date date) {
-		this.date1 = date;
+	public void setDate1(String date1) {
+		this.date1 = date1;
 	}
 
 

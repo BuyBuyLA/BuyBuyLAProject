@@ -50,4 +50,10 @@ public class CampaignServiceImpl implements CampaignService {
 		campaignDao.update(campaign);
 	}
 
+	@Override
+	public void updateWithoutImg(Campaign campaign) {
+		campaignDao.updateWithoutImg(campaign);
+		
+	}
+
 }
