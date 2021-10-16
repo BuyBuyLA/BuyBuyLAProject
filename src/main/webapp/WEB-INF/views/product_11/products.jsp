@@ -32,7 +32,7 @@
 			<li><a href="<c:url value='/cart' />">我的購物車<i id="ccount"></i>
 			</a></li>
 			<li><a href="<c:url value='/user' />">購物記錄管理</a></li>
-			<li><a href="main.html">活動專區</a></li>
+			<li><a href="<c:url value='/campaigns' />">活動專區</a></li>
 			<li><a href="<c:url value='/forum' />">討論區</a></li>
 			<li><a href="UserLogin.jsp">會員登入</a></li>
 			<li><a href="Form.jsp">會員註冊</a></li>
