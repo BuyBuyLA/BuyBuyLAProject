@@ -11,7 +11,7 @@
     href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <link rel='stylesheet' href="<c:url value='/css/styles.css' />"  type="text/css" />
 <style type="text/css">
-   body {
+	  body {
             font-family: "微軟正黑體";
             background-color: rgb(203, 218, 218);
             align-items: center;
@@ -166,7 +166,11 @@
 </head>
 <body>
     <section>
-      
+        <div class="container">
+            <h1 style="">
+            修改活動
+            </h1>
+        </div>
     </section>
     <div align='center'>
         <a href="<c:url value='/' />">
@@ -174,77 +178,58 @@
         </a>
     </div> 
     <hr style="height: 1px; border: none; color: #333; background-color: #333;">
+    <section class="container">
         <!--       三個地方要完全一樣 -->
-        <h1>新增活動</h1>
-        <form:form method='POST' modelAttribute="Campaign" class='form-horizontal'
-        		   enctype='multipart/form-data'
-        >
-            <table rules="all">
+        <form:form method='POST' modelAttribute="campaign" class='form-horizontal'
+        		   enctype='multipart/form-data'>
+           <table rules="all">
        
-		<tbody>
+	<tbody>
 			
-			<div class="im" style="margin-bottom:80px">
-				<img src="https://unsplash.com/photos/8pb7Hq539Zw?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink" width="150" height="150" alt="封面圖片" >
+			<div class="im" style="margin-bottom:100px">
+			<a href="<c:url value='${campaign.url} ' />"  target="_blank">	<img style="border-radius:10px " width='150' height='150' 
+   					  src="<c:url value='/getCampaignPicture/${campaign.id}'/>" />
+   			</a>
 			</div>
             <tr>
-                <td><label  for="productImage">
-						照片
-					</label></td>
-                <td>	<form:input id="productImage" path="productImage" type='file'
-							class='form:input-large' /></td>
+                <td><label  for="productImage">照片</label></td>
+                <td><form:input id="productImage" path="productImage" type='file' class='form:input-large' /> </td>
             </tr>
-			<tr>
-                <td><label for='name'>
-						活動名稱:         
-					</label></td>
-                <td>  <form:input id="name" path="name" type='text'
-                            class='form:input-large' /></td>
+              <tr>
+                <td><label  for="id">編號</label></td>
+                <td><input id="id" name="id" type='text' class='form:input-large' value="${campaign.id}" readonly="readonly" /></td>
             </tr>
-
-	  <tr>
-                <td><label  for='date1'>
-						日期:         
-					</label></td>
-                <td>     <form:input id="date1" path="date1" type='date'
-                            class='form:input-large' /></td>
+	   		 <tr>
+                <td> <label class="" for='name'>活動名稱:</label></td>
+                <td> <form:input id="name" path="name" type='text' class='form:input-large' /></td>
             </tr>
-
-
-
+	   <tr>
+                <td> <label class="" for='date1'>活動日期:</label></td>
+                <td> <form:input id="date1" path="date1" type='date' class='form:input-large' /></td>
+            </tr>
             <tr>
-                <td> <label   for='url'>
-                         活動網址:
-                     </label></td>
-                <td> <form:textarea id="url" path="url" type='text'
-                            class='form:input-large' />
-		</td>
+                <td><label class=""  for='url'>活動網址:</label></td>
+                <td><form:textarea id="url" path="url" type='textarea' class='form:input-large' /></td>
             </tr>
            
             <tr>
-                <td><label for="description">
-                     	活動描述:
-                    </label></td>
-                <td><form:textarea id="description" path="description" type='text'
-                            class='form:input-large' /></td>
+                <td><label class='' for="description">活動描述:</label></td>
+                <td> <form:textarea id="description" path="description" type='textarea' class='form:input-large' /></td>
             </tr>
             <tr>
-                <td> <label  for="note">
-                        備註:
-                     </label></td>
-                <td> <form:textarea id="note" path="note" type='text'
-                            class='form:input-large' /></td>
+                <td><label class='' for="note">備註:</label></td>
+                <td> <form:textarea id="note" path="note" type='textarea' class='form:input-large' /></td>
             </tr>
-               </tbody>
-    </table>
-
- 	<div class="wrap" style="display: flex;margin-left: 80px;">
-        <input id="btnAdd" type='submit' class='btn btn-primary'
-                            value="送出" />
+           
+        </tbody>
+   	 </table>
+	<div class="wrap" style="display: flex;margin-left: 80px;">
+       	 <button type="submit" name="submit" class="button">送出</button>
+       	 <button type="submit" name="return" class="button">返回</button>
 	</div>  
- 	
- </form:form>
-
-     
+        </form:form>
+    </section>
+    
     <script type="text/javascript">
     var x = new FileReader;
     document.forms[0].elements[0].onchange = function () {
@@ -254,5 +239,6 @@
         document.images[0].src = this.result;
     }
 	</script>
+    
 </body>
 </html>

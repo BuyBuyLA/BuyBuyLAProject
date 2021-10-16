@@ -15,5 +15,7 @@ public interface CampaignService {
 	void delete(int campaignId);
 
 	void update(Campaign campaign);
+	
+	void updateWithoutImg(Campaign campaign);
 }
 

@@ -25,7 +25,9 @@ public class CampaignDaoImpl implements CampaignDao{
 	@Override
 	public void save(Campaign campaign) {
 		Session session = factory.getCurrentSession();
+		System.out.println(campaign.getDate1());
 		session.save(campaign);
+		
 	}
 
 	@Override
@@ -54,7 +56,25 @@ public class CampaignDaoImpl implements CampaignDao{
 	@Override
 	public void update(Campaign campaign) {
 		Session session = factory.getCurrentSession();
+		System.out.println("************************"+campaign.getDate1());
 		session.saveOrUpdate(campaign);
+	}
+
+
+	@Override
+	public void updateWithoutImg(Campaign campaign) {
+		Session session = factory.getCurrentSession();
+		String hql="update Campaign set name=:name,note=:note,url=:url,"
+                + "description=:description,date1=:date1 where id=:id";
+        session.createQuery(hql)
+        .setParameter("name", campaign.getName())
+        .setParameter("note", campaign.getNote())
+        .setParameter("url", campaign.getUrl())
+        .setParameter("description",campaign.getDescription())
+        .setParameter("date1", campaign.getDate1())
+        .setParameter("id", campaign.getId())
+        .executeUpdate();
+        
 	}
 
 
