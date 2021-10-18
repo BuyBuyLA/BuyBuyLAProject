@@ -30,6 +30,7 @@
 				<p>庫存: ${product.stock}</p>
 				<p>單價: ${product.price}</p>
 				<p>書籍分類: ${product.category}</p>
+				<p>商品描述: ${product.productInfo}</p>
 				<p>
 					<strong>商品編號: </strong> <span class='label label-warning'>
 						${product.productNo} </span>

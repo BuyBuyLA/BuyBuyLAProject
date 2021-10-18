@@ -106,7 +106,7 @@ span {
 	<br>
 	<br>
 	<br>
-	<span class="wrap"> <a href="<c:url value='/test' />"><input
+	<span class="wrap"> <a href="<c:url value='/products' />"><input
 			type="submit" name="update" class="button" value="返回首頁" /></a>
 
 	</span>

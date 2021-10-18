@@ -130,7 +130,7 @@ public class CartController {
 	@GetMapping("/removeAllCart")
 	public String removeAllCart(Model model) {
 		cartService.deleteAll();
-		 return "product_11/products";
+		 return "redirect:/products";
 	}
 	
 	

@@ -10,6 +10,7 @@
 <link rel='stylesheet' href="<c:url value='/css/styles.css' />"  type="text/css" />
 <link rel="stylesheet"
     href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 fieldset {
     border: 1px solid rgb(255, 232, 57);
@@ -35,7 +36,7 @@ fieldset {
     <hr style="height: 1px; border: none; color: #333; background-color: #333;">
     <section class="container">
         <!--       三個地方要完全一樣 -->
-        <form:form method='POST' modelAttribute="productBean" class='form-horizontal'
+        <form:form id='form' method='POST' modelAttribute="productBean" class='form-horizontal'
         	enctype="multipart/form-data">
             <fieldset >
                 <div class="form-group">
@@ -44,7 +45,7 @@ fieldset {
                     </label>
                     <div class="col-lg-10">
                          <form:input id="productName" path="productName" type='text'
-                            class='form:input-large' />
+                            class='form:input-large' name="productName" />
                     </div>
                 </div>
 
@@ -54,7 +55,7 @@ fieldset {
                     </label>
                     <div class="col-lg-10">
                         <form:input id="price" path="price" type='text'
-                            class='form:input-large' />
+                            class='form:input-large' name="price" />
                     </div>
                 </div>
 
@@ -78,7 +79,7 @@ fieldset {
                     </label>
                     <div class='col-lg-10'>
                         <form:input id="stock" path="stock" type='text'
-                            class='form:input-large' />
+                            class='form:input-large' name="stock"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -87,7 +88,17 @@ fieldset {
                     </label>
                     <div class='col-lg-10'>
                         <form:input id="productNo" path="productNo" type='text'
-                            class='form:input-large' />
+                            class='form:input-large' name="productNo" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class='control-label col-lg-2 col-lg-2' for="productInfo">
+                        商品描述
+                    </label>
+                    <div class='col-lg-10'>
+                        <form:textarea id="productNo" path="productInfo" 
+                          rows="4" cols="40"  class='form:input-large' name="productInfo" />
                     </div>
                 </div>
      
@@ -109,5 +120,6 @@ fieldset {
             </fieldset>
         </form:form>
     </section>
+    
 </body>
 </html>

@@ -28,11 +28,14 @@
 
 		<!-- 3. 宣告程式使用的Mapping檔 ，每個永續類別都需要定義一個Mapping檔 -->
 
+
 		<mapping class="com.web.member_25.model.MemberBean"></mapping>
 		
 		<mapping class="com.web.member_25.model.membershipInformationBean"></mapping>
 		
 		<mapping class="com.web.product_11.model.Product"></mapping>
+
+		<mapping class="com.web.celebrations_36.model.Campaign"></mapping>
 
 	</session-factory>
 </hibernate-configuration>
