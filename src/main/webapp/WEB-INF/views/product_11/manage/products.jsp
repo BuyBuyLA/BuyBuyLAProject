@@ -56,9 +56,7 @@ body{
 </style>
 </head>
 <body>
-
- 
-
+<a  href="<c:url value='/products/add' />">新增商品</a>
 <table id="myTable" class="display">
     <thead>
         <tr>

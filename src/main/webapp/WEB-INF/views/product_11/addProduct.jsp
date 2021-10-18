@@ -65,10 +65,12 @@ fieldset {
                     </label>
                     <div class='col-lg-10'>
                         <form:select path="category">
-                            <form:option value="男生衣服">
-                            	
-                            </form:option>
-                            <form:options items="${categoryList}" />
+                            <form:option value="女生衣服"></form:option>
+                            <form:option value="男生衣服"></form:option>
+                            <form:option value="寵物"></form:option>
+                            <form:option value="運動健身"></form:option>
+                            <form:option value="其他"></form:option>
+                       
                         </form:select>
                     </div>
                 </div>

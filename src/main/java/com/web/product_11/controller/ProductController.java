@@ -57,7 +57,6 @@ public class ProductController {
 
 		List<Product> beans = productservice.getAllProducts();
 		model.addAttribute("products", beans);
-		model.addAttribute("categoryList", productservice.getAllCategories());
 		return "product_11/products";
 		
 		
@@ -69,7 +68,6 @@ public class ProductController {
 
 			List<Product> beans = productservice.getAllProducts();
 			model.addAttribute("products", beans);
-			model.addAttribute("categoryList", productservice.getAllCategories());
 			return "product_11/manage/products";
 			
 			
