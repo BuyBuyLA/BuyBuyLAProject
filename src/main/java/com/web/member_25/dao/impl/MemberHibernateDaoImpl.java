@@ -59,6 +59,7 @@ public class MemberHibernateDaoImpl implements MemberDao {
 	@Override
 	public void save(membershipInformationBean mb) {
 		Session session = factory.getCurrentSession();
+		mb.setIdentification("member");
 		session.save(mb);
 	}
 
@@ -160,6 +161,7 @@ public class MemberHibernateDaoImpl implements MemberDao {
 		System.out.println("===================overlappedAccount執行中=");
 
 		try {
+			
 			Query query = session.createQuery(
 					"FROM membershipInformationBean where userEmail=:userEmail",
 					membershipInformationBean.class);
@@ -266,13 +268,11 @@ public class MemberHibernateDaoImpl implements MemberDao {
 		membershipInformationBean mb=new membershipInformationBean();
 		try {
 			Session session = factory.getCurrentSession();
-			System.out.println("開始進行memberOrManager找管理者---------------------->");
 			Query query = session.createQuery(sql,String.class);
 			query.setParameter("id", id);		
 				query.getResultList();   //must
 				m=(String) query.getSingleResult();
-			  System.out.println("getSingleResult===========manager===========>"+query.getSingleResult());
-			  //  code end
+			 
 			  if (m.equals("manager")) {
 				  return false;
 			  }

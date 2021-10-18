@@ -75,6 +75,7 @@ public class TestLoginController {
 		mb.setUserEmail("c123@gmail.com");
 		mb.setUserPwd("c123456");
 		mb.setUserPhone("09123456");
+		mb.setIdentification("member");
 		model.addAttribute("loginBeanDefault",mb);
 		return "member_25/trySignUpPage";
 	}
@@ -101,6 +102,7 @@ public class TestLoginController {
 		System.out.println("-------> mb = "+mb);
 		System.out.println("---->mb.ID="+mb.getId());	
 		System.out.println("---->mb.ID="+mb.getUserEmail());	
+		System.out.println("---->mb.getIdentification="+mb.getIdentification());	
 		
 		int loginResult=0;
 		loginResult=	memberService.overlappedAccount(mb.getUserEmail());
