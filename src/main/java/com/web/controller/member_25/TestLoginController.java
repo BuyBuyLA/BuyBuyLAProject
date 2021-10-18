@@ -112,7 +112,7 @@ public class TestLoginController {
 		}else if (loginResult==2) {
 			System.out.println("無人使用此帳號 已註冊  ----->");
 			memberService.save(mb);	
-			return "cart_30/TotalHome";
+			return "product_11/products";
 		}
 		
 		return  "member_25/trySignUpPage";
@@ -183,7 +183,7 @@ public class TestLoginController {
 				model.addAttribute("loginSession",mb2);
 				
 				
-				return "redirect:/try/index";  //登入成功
+				return "redirect:/products";  //登入成功
 				
 				
 			}else if (loginResult==2) {
