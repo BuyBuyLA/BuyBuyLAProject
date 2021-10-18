@@ -56,7 +56,7 @@ public class CampaignDaoImpl implements CampaignDao{
 	@Override
 	public void update(Campaign campaign) {
 		Session session = factory.getCurrentSession();
-		System.out.println("************************"+campaign.getDate1());
+	//	System.out.println("************************"+campaign.getDate1());
 		session.saveOrUpdate(campaign);
 	}
 

@@ -56,6 +56,7 @@ public class CampaignController {
 	public String list(Model model) {
 		List<Campaign> beans = campaignService.findAll();
 		model.addAttribute("campaigns",beans);
+		model.addAttribute("campaignsize",beans.size());
 		return "celebrations_36/campaigns";
 	}
 	
