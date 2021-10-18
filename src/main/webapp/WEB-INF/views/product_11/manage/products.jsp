@@ -6,7 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+ <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 <style>
+body{
+
+}
 #myInput {
   background-image: url('/css/searchicon.png'); /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
@@ -20,10 +28,13 @@
 
 #myTable {
   border-collapse: collapse; /* Collapse borders */
-  width: 80%; /* Full-width */
+  width: 50%; /* Full-width */
   border: 1px solid #ddd; /* Add a grey border */
-  font-size: 18px; /* Increase font-size */
+  font-size: 14px; /* Increase font-size */
   margin:auto;
+  font-family: "微軟正黑體";
+  font-weight: bolder;
+            
 }
 
 #myTable th, #myTable td {
@@ -40,15 +51,17 @@
   /* Add a grey background color to the table header and on hover */
   background-color: #f1f1f1;
 }
+
+
 </style>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 
-<table id="myTable">
-  <tr class="header">
+ 
+
+<table id="myTable" class="display">
+    <thead>
+        <tr>
     <th style="width:10%;">productId</th>
     <th style="width:30%;">productName</th>
     <th style="width:20%;">productImage</th>
@@ -56,10 +69,12 @@
     <th style="width:10%;">stock</th>
     <th style="width:10%;">update</th>
     <th style="width:10%;">delete</th>
-  </tr>
-  <c:forEach items="${products}" var="product">
-  <tr>
-    <td>${product.productId}</td>
+        </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${products}" var="product">
+        <tr>
+           <td>${product.productId}</td>
     <td>${product.productName}</td>
     <td><img width='100' height='100' 
   				   src="<c:url value='/getPicture/${product.productId}' />" /></td>
@@ -69,31 +84,19 @@
     <td><input type=button onclick="location.href='/delete/${product.productId}'" value='update'></td>-->
      <td><a id="update" href="<c:url value='/update?productId=${product.productId}' />">update</a></td>
     <td><a  href="<c:url value='/delete/${product.productId}' />">delete</a></td>
-  </tr>
-  </c:forEach>
+        </tr>
+        </c:forEach>
+    </tbody>
 </table>
-<script>
-function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
+
+
+<script>
+
+
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
  
 	
 

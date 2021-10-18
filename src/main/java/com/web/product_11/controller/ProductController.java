@@ -12,7 +12,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -66,7 +64,7 @@ public class ProductController {
 	}
 	
 	//管理頁面-商品
-		@GetMapping("manage/products")
+		@GetMapping("/manage/products")
 		public String managelist(Model model) {
 
 			List<Product> beans = productservice.getAllProducts();
@@ -88,14 +86,14 @@ public class ProductController {
 			return "product_11/product";
 		}
 		
-		@RequestMapping("/query")
+		@RequestMapping("/queryproduct")
 		public String processQueryProduct(
 				@RequestParam("productName") String productName,
 				Model model
 				) {
 			List<Product> bean = productservice.getProductByName(productName);
 			model.addAttribute("products", bean);
-			return "product_11/products";
+			return "product_11/products_category";
 			
 		}
 		
@@ -160,7 +158,7 @@ public class ProductController {
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}
 
-		return "redirect:product_11/products";
+		return "redirect:/manage/products";
 	}
 
 //獲取類別List
