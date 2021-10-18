@@ -32,7 +32,7 @@
         <li><a href="campaigns">活動專區</a></li>
         <li><a href="<c:url value='/cart' />"><i class="fas fa-shopping-cart"></i><i id="ccount"></i>
 			</a></li>
-			<li><a href="<c:url value='/try/member_Ui' />">${loginSession.userEmail}</a></li>
+			<li><a href="<c:url value='/try/member_Ui' />">${loginSession.userName}</a></li>
 <!--  <li><a href="#">待更新</a></li> -->
       </ul>
  
@@ -151,15 +151,15 @@
             <div class="thumbnail">
                 <img class="group list-group-image" src="<c:url value='/getPicture/${product.productId}' />" alt="" />
               <div class="category">
-                <h5 class="category-name">Tables</h5>
+                <h5 class="category-name">${product.category}</h5>
               </div>
                 <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Pearl Galaxy</h4>
+                    <h5 class="group inner list-group-item-heading" style=" word-break: break-all; ">
+                        ${product.productName}</h5>
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
                             <p class="lead">
-                                $2,100</p>
+                                ${product.price}</p>
                         </div>
 		<div class="btn-group">
             <a class="btn btn-details" href="<spring:url value='/product?id=${product.productId}' />">Details</a>

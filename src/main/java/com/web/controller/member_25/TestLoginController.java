@@ -50,8 +50,9 @@ public class TestLoginController {
 		membershipInformationBean mb2=new membershipInformationBean();
 		mb2.setUserEmail(mb.getUserEmail());
 		mb2.setUserPwd(mb.getUserPwd());
+		mb2.setUserName(mb.getUserName());
 		model.addAttribute("loginSession",mb2);
-		System.out.println("首頁的getmapping ----------->getUserEmail ="+mb.getUserEmail());
+		System.out.println("首頁的getmapping ----------->getUserEmail ="+mb.getUserName());
 		
 		
 		return "cart_30/TotalHome";
