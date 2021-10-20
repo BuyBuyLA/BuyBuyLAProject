@@ -31,17 +31,20 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public void addItemByid(int pid) {
+	public Cart addItemByid(int pid,boolean exists) {
 		System.out.println("pid = " + pid);
 		Session session = factory.getCurrentSession();
 		Product pb = session.get(Product.class, pid);
 
 		Cart cb = new Cart(pid,pb.getProductName(), pb.getPrice(), 1,"asd123",pb.getSerller() ,pb.getCoverImage());
 //		System.out.println("******************************");
-		session.save(cb);
-
+		if(exists!=true) {
+			
+		}
+		
+		
 		System.out.println(pb.getProductId() + "," + pb.getProductName() + "," + pb.getCoverImage() + "," + pb.getPrice());
-
+		return(cb);
 	}
 
 	@Override

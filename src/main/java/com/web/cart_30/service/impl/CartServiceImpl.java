@@ -1,7 +1,6 @@
 package com.web.cart_30.service.impl;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.List;
 
 import org.hibernate.Session;
@@ -39,9 +38,9 @@ public class CartServiceImpl implements CartService {
 
 	@Transactional
 	@Override
-	public void addItemByid(int pid) {
+	public Cart addItemByid(int pid,boolean exists) {
 		System.out.println("serviceqqqqqqqqqqqqqqqqqqqqqqqqq");
-		cartDao.addItemByid(pid);
+		return cartDao.addItemByid(pid,exists);
 	}
 
 

@@ -50,13 +50,15 @@ public class CartController {
 		System.out.println("PID cc= "+id);
 		boolean exists = cartService.existsById(id);
 		System.out.println("exists = "+exists);
-		if(exists!=true) {
-			cartService.addItemByid(id);		
-		}
-		else {
-			cartService.add(id);	
-		}
-		model.addAttribute("additem");
+//		if(exists!=true) {
+			Cart cart =cartService.addItemByid(id,exists);
+			model.addAttribute("additem",cart);
+//		}
+//		else {
+//			cartService.addItemByid(id);
+//			model.addAttribute("additem");	
+//		}
+		
 		return "redirect:/products";
 	}
 	
