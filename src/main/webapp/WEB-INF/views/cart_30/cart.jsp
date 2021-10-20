@@ -138,13 +138,17 @@ h2 span {
 </head>
 
 <body>
+
 <sql:setDataSource var="snapshot" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-     url="jdbc:sqlserver://localhost:1433;databaseName=BuyBuyLa"
-     user="sa"  password="password"/>
+      url="jdbc:sqlserver://localhost:1433;databaseName=shopping" 
+     user="sa"  password="zxcv265358"/> 
+<!-- ======= -->
+<%-- <sql:setDataSource var="snapshot" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver" --%>
+<%--      url="jdbc:sqlserver://localhost:1433;databaseName=BuyBuyLa" --%>
+<%--      user="sa"  password="password"/> --%>
+<!-- >>>>>>> branch 'Dev_MVC3' of git@github.com:BuyBuyLA/BuyBuyLAProject.git -->
      
-<sql:query
- sql="select * from Cart"
- var="rs" dataSource="${snapshot}" />
+ <sql:query sql="select * from Cart" var="rs" dataSource="${snapshot}" /> 
  
  
 	<div class="container">
