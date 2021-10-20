@@ -37,10 +37,8 @@ public class CartDaoImpl implements CartDao {
 		Product pb = session.get(Product.class, pid);
 
 		Cart cb = new Cart(pid,pb.getProductName(), pb.getPrice(), 1,"asd123",pb.getSerller() ,pb.getCoverImage());
-//		System.out.println("******************************");
-		if(exists!=true) {
-			
-		}
+		System.out.println("******************************");
+		session.save(cb);
 		
 		
 		System.out.println(pb.getProductId() + "," + pb.getProductName() + "," + pb.getCoverImage() + "," + pb.getPrice());

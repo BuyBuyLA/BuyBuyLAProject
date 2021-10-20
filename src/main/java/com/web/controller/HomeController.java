@@ -35,6 +35,13 @@ public class HomeController {
 	
 	}
 	
+	@GetMapping("/adminHome")
+	public String manageHome(Model model) {
+		
+		return "Home/manageHome";
+		
+	}
+	
 	
 }
 

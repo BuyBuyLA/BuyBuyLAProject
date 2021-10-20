@@ -50,8 +50,9 @@ public class TestLoginController {
 		membershipInformationBean mb2=new membershipInformationBean();
 		mb2.setUserEmail(mb.getUserEmail());
 		mb2.setUserPwd(mb.getUserPwd());
+		mb2.setUserName(mb.getUserName());
 		model.addAttribute("loginSession",mb2);
-		System.out.println("首頁的getmapping ----------->getUserEmail ="+mb.getUserEmail());
+		System.out.println("首頁的getmapping ----------->getUserEmail ="+mb.getUserName());
 		
 		
 		return "cart_30/TotalHome";
@@ -112,7 +113,7 @@ public class TestLoginController {
 		}else if (loginResult==2) {
 			System.out.println("無人使用此帳號 已註冊  ----->");
 			memberService.save(mb);	
-			return "cart_30/TotalHome";
+			return "product_11/products";
 		}
 		
 		return  "member_25/trySignUpPage";
@@ -183,7 +184,7 @@ public class TestLoginController {
 				model.addAttribute("loginSession",mb2);
 				
 				
-				return "redirect:/try/index";  //登入成功
+				return "redirect:/products";  //登入成功
 				
 				
 			}else if (loginResult==2) {

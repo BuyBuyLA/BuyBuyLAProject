@@ -38,9 +38,12 @@ public class CartServiceImpl implements CartService {
 
 	@Transactional
 	@Override
-	public Cart addItemByid(int pid,boolean exists) {
+	public void addItemByid(int pid,boolean exists) {
 		System.out.println("serviceqqqqqqqqqqqqqqqqqqqqqqqqq");
-		return cartDao.addItemByid(pid,exists);
+		if(exists!=true) {
+			 cartDao.addItemByid(pid,exists);
+		}
+		cartDao.add(pid);
 	}
 
 

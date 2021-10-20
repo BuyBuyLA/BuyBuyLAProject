@@ -30,7 +30,7 @@
 	</c:forEach>
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
  
- <form:form method='POST' action="./query" class='form-horizontal'>
+ <form:form method='POST' action="./queryproduct" class='form-horizontal'>
             <fieldset >
                     <div>
                         <input name="productName" id="productName"  type='text'

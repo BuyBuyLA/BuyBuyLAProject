@@ -23,7 +23,7 @@ import com.web.record_30.model.RecordBean;
 
 
 @Controller
-//@SessionAttributes({"loginSession","memberUiDefault","managerSession"})
+@SessionAttributes("cart")
 public class CartController {
 	CartService cartService;
 
@@ -50,14 +50,14 @@ public class CartController {
 		System.out.println("PID cc= "+id);
 		boolean exists = cartService.existsById(id);
 		System.out.println("exists = "+exists);
-//		if(exists!=true) {
-			Cart cart =cartService.addItemByid(id,exists);
-			model.addAttribute("additem",cart);
-//		}
-//		else {
-//			cartService.addItemByid(id);
-//			model.addAttribute("additem");	
-//		}
+		if(exists!=true) {
+			cartService.addItemByid(id,exists);
+
+		}
+		else {
+			cartService.add(id);
+			model.addAttribute("additem");	
+		}
 		
 		return "redirect:/products";
 	}

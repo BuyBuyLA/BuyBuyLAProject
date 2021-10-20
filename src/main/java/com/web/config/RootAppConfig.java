@@ -28,9 +28,8 @@ public class RootAppConfig {
 	        } catch (PropertyVetoException e) {
 	            e.printStackTrace();
 	        }
-
-	        ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=shopping");
 //	        ds.setJdbcUrl("jdbc:sqlserver://MSI\\SQLEXPRESS:1433;databaseName=BuyBuyLa");
+	        ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=shopping");
 	        ds.setInitialPoolSize(4);
 	        ds.setMaxPoolSize(8);
 	        return ds;
