@@ -209,7 +209,7 @@ h1 {
 					</div>
 					<div class="modal-body updContentBody">
 						<form:input path="userName" type="text" value="asd123" style="display:none" />
-						<form:input id="updid" path="id" type="text" />
+						<form:input id="updid" path="id" type="text" style="display:none" />
 						<div class="mb-3">
 							<label>分類標籤</label> 
 							<select id="updSelectTag">
