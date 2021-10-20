@@ -410,7 +410,7 @@ body {
                         <br><br>
                         
                     
-                    <<a href="<c:url value='/member/index' />"><input type="submit" id="submitLogin" name='submitLogin' value="確認送出"  style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;"/>
+                    <a href="<c:url value='/member/index' />"><input type="submit" id="submitLogin" name='submitLogin' value="確認送出"  style="width: 250px; height: 39px; background-color: rgb(23, 170, 170); margin-left: 40px;  color: white;"/>
                     </a>
                     
                     <input type="submit" id="btnAdd"  name="submit" value="註冊" class="reg">

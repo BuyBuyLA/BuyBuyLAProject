@@ -18,8 +18,10 @@ public interface MemberService {
 	membershipInformationBean findById(int id);
 
 	void delete(int pk);
-
+	//更新會員資料
 	void update(membershipInformationBean mb);
+	//更新會員資料(沒圖片)
+	void updateWithNoImage(membershipInformationBean mb);
 	
 	int login(String userEmail, String userPwd);
 	
@@ -32,6 +34,10 @@ public interface MemberService {
 	int findIdByEmail(String userEmail);
 	//管理者判斷
 	Boolean memberOrManager(int id);
+	
+	//用ID找會員資料
+	membershipInformationBean getMemberById(int id);
+
 	
 //	//前置下拉選單 
 //	List<membershipInformationBean>  getIdentificationList();

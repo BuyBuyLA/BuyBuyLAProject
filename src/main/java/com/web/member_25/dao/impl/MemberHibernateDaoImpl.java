@@ -16,6 +16,7 @@ import com.web.member_25.dao.MemberDao;
 import com.web.member_25.model.MemberBean;
 import com.web.member_25.model.membershipInformationBean;
 
+
 //import ch01.dao.MemberDao;
 //import ch01.model.MemberBean;
 
@@ -75,6 +76,7 @@ public class MemberHibernateDaoImpl implements MemberDao {
 	public membershipInformationBean findById(int id) {
 		Session session = factory.getCurrentSession();
 		membershipInformationBean mb = session.get(membershipInformationBean.class, id);
+		System.out.println("hi thiss findById-----------------");
 //		membershipInformationBean mb=session.get(membershipInformationBean.class, userEmail);
 		return mb;
 	}
@@ -93,14 +95,17 @@ public class MemberHibernateDaoImpl implements MemberDao {
 				+ "set m.userPhone=:userPhone,"
 				+ "m.userName=:userName,"
 				+ "m.userGender=:userGender,"
-				+ "m.address=:address "   //,head_shot=:head_shot
+				+ "m.address=:address,"   //,head_shot=:head_shot
+				+ "m.head_shot=:head_shot," 
+				+ "m.fileName=:fileName " 
 				+ "WHERE m.userEmail=:userEmail"; 
 		  System.out.println("進入update------mb.getUserEmail----->"+mb.getUserEmail());
 		  System.out.println("進入update------mb.getUserPhone----->"+mb.getUserPhone());
 		  System.out.println("進入update------mb.getUserName----->"+mb.getUserName());
 		  System.out.println("進入update------mb.getUserGender----->"+mb.getUserGender());
 		  System.out.println("進入update------mb.getAddress----->"+mb.getAddress());
-//		  System.out.println("進入update------mb.getHead_shot----->"+mb.getHead_shot());
+		  System.out.println("進入update------mb.getHead_shot----->"+mb.getHead_shot());
+		  System.out.println("進入update------mb.getFileName----->"+mb.getFileName());
 		
 			try {
 				Session session = factory.getCurrentSession();
@@ -109,8 +114,9 @@ public class MemberHibernateDaoImpl implements MemberDao {
 						.setParameter("userPhone", mb.getUserPhone())
 						.setParameter("userName", mb.getUserName())
 						.setParameter("userGender", mb.getUserGender())
-						.setParameter("address", mb.getAddress());
-//						.setParameter("head_shot", mb.getHead_shot());
+						.setParameter("address", mb.getAddress())
+						.setParameter("head_shot", mb.getHead_shot())
+						.setParameter("fileName", mb.getFileName());
 						query.executeUpdate();
 						System.out.println("更新成功拉");
 				} catch (Throwable t) {
@@ -121,6 +127,46 @@ public class MemberHibernateDaoImpl implements MemberDao {
 		System.out.println("update完畢");
 
 	}
+	
+	
+	
+	
+	@Override
+	public void updateWithNoImage(membershipInformationBean mb) {
+		String hql="UPDATE membershipInformationBean m "
+				+ "set m.userPhone=:userPhone,"
+				+ "m.userName=:userName,"
+				+ "m.userGender=:userGender,"
+				+ "m.address=:address "   //,head_shot=:head_shot
+				+ "WHERE m.userEmail=:userEmail"; 
+		  System.out.println("進入update------mb.getUserEmail----->"+mb.getUserEmail());
+		  System.out.println("進入update------mb.getUserPhone----->"+mb.getUserPhone());
+		  System.out.println("進入update------mb.getUserName----->"+mb.getUserName());
+		  System.out.println("進入update------mb.getUserGender----->"+mb.getUserGender());
+		  System.out.println("進入update------mb.getAddress----->"+mb.getAddress());
+		  System.out.println("進入update with no image------mb.getHead_shot----->"+mb.getHead_shot());
+		  System.out.println("進入update with no image------mb.getFileName----->"+mb.getFileName());
+		
+			try {
+				Session session = factory.getCurrentSession();
+				Query query = session.createQuery(hql)
+						.setParameter("userEmail", mb.getUserEmail())
+						.setParameter("userPhone", mb.getUserPhone())
+						.setParameter("userName", mb.getUserName())
+						.setParameter("userGender", mb.getUserGender())
+						.setParameter("address", mb.getAddress());
+						query.executeUpdate();
+						System.out.println("更新成功拉");
+				} catch (Throwable t) {
+				  System.out.println("出錯拉");
+				  throw t;
+				}
+		
+		System.out.println("update with no image 完畢");
+		
+	}
+	
+	
 
 	public int login(String userEmail, String userPwd) {
 		Session session = factory.getCurrentSession();
@@ -283,6 +329,29 @@ public class MemberHibernateDaoImpl implements MemberDao {
 			}
 		
 	}
+	
+	
+	
+	@Override
+	public membershipInformationBean getMemberById(int id) {
+//		// 2.實作
+//		Session session=factory.getCurrentSession();
+//		String hql="";
+//		//用主鍵查用get就可以了
+//		return session.get(BookBean.class,productId);
+		
+		//加入例外處裡
+		Session session = factory.getCurrentSession();
+		membershipInformationBean bb = session.get(membershipInformationBean.class, id);
+		if (bb == null) {
+//			throw new ProductNotFoundException("會員編號：" + id + "找不到");
+		}
+		System.out.println("bb="+bb);
+		return bb;
+	}
+
+	
+	
 
 //	//前置的下拉選單
 //	@Override

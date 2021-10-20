@@ -95,6 +95,17 @@ public class MemberServiceHibernateImpl implements MemberService {
 		return dao.memberOrManager(id);
 	}
 
+	@Override
+	public membershipInformationBean getMemberById(int id) {
+		
+		return dao.getMemberById(id);
+	}
+
+	@Override
+	public void updateWithNoImage(membershipInformationBean mb) {
+		 dao.updateWithNoImage(mb);
+	}
+
 //	@Override   //下拉選單
 //	public List<membershipInformationBean> getIdentificationList() {
 //		return dao.getIdentificationList();
