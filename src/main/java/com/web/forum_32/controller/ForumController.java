@@ -51,8 +51,53 @@ public class ForumController {
 	// 首頁展示
 	@GetMapping("/forum")
 	public String forum(Model model) {
-		List<ForumBean> list = forumService.getAllContents();
-		model.addAttribute("content", list);
+		List<ForumBean> allList = forumService.getAllContents();
+		model.addAttribute("content", allList);
+		model.addAttribute("forumBean", new ForumBean());
+		model.addAttribute("updateForumBean", new ForumBean());
+		return "forum_32/forum";
+	}
+	
+	// 首頁展示-忙裡偷閒聊
+	@GetMapping("/chat")
+	public String chat(Model model) {
+		List<ForumBean> chatList = forumService.getAllContentsByChat();
+		if(!chatList.isEmpty()) {
+		model.addAttribute("content", chatList);
+	}else {
+		List<ForumBean> allList = forumService.getAllContents();
+		model.addAttribute("content", allList);
+	}
+		model.addAttribute("forumBean", new ForumBean());
+		model.addAttribute("updateForumBean", new ForumBean());
+		return "forum_32/forum";
+	}
+
+	// 首頁展示-開箱文
+	@GetMapping("/box")
+	public String box(Model model) {
+		List<ForumBean> boxList = forumService.getAllContentsByBox();
+		if(!boxList.isEmpty()) {
+		model.addAttribute("content", boxList);
+	}else {
+		List<ForumBean> allList = forumService.getAllContents();
+		model.addAttribute("content", allList);
+	}
+		model.addAttribute("forumBean", new ForumBean());
+		model.addAttribute("updateForumBean", new ForumBean());
+		return "forum_32/forum";
+	}
+
+	// 首頁展示-其他
+	@GetMapping("/other")
+	public String other(Model model) {
+		List<ForumBean> orderList = forumService.getAllContentsByOther();
+			if(!orderList.isEmpty()) {
+			model.addAttribute("content", orderList);
+		}else {
+			List<ForumBean> allList = forumService.getAllContents();
+			model.addAttribute("content", allList);
+		}
 		model.addAttribute("forumBean", new ForumBean());
 		model.addAttribute("updateForumBean", new ForumBean());
 		return "forum_32/forum";
@@ -126,33 +171,6 @@ public class ForumController {
 	@InitBinder
 	public void whiteListing(WebDataBinder binder) {
 		binder.setAllowedFields("userName", "userEmail", "tag", "id", "content", "image", "date", "files");
-	}
-
-	// 首頁展示-忙裡偷閒聊
-	@GetMapping("/chat")
-	public String chat(Model model) {
-		List<ForumBean> list = forumService.getAllContentsByChat();
-		model.addAttribute("content", list);
-		model.addAttribute("forumBean", new ForumBean());
-		return "forum_32/forum";
-	}
-
-	// 首頁展示-開箱文
-	@GetMapping("/box")
-	public String box(Model model) {
-		List<ForumBean> list = forumService.getAllContentsByBox();
-		model.addAttribute("content", list);
-		model.addAttribute("forumBean", new ForumBean());
-		return "forum_32/forum";
-	}
-
-	// 首頁展示-其他
-	@GetMapping("/other")
-	public String other(Model model) {
-		List<ForumBean> list = forumService.getAllContentsByOther();
-		model.addAttribute("content", list);
-		model.addAttribute("forumBean", new ForumBean());
-		return "forum_32/forum";
 	}
 
 	//
