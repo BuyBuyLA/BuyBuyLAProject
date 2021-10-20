@@ -20,6 +20,8 @@ public interface MemberDao {
 	void delete(int pk);
 
 	void update(membershipInformationBean mb);
+	//更新會員資料(沒圖片)
+	void updateWithNoImage(membershipInformationBean mb);
 	
 	
 	//登入
@@ -38,7 +40,10 @@ public interface MemberDao {
 	
 	//管理者判斷
 		Boolean memberOrManager(int id);
-	
+		
+	//用ID找會員資料
+		membershipInformationBean getMemberById(int id);
+		
 //	//前置下拉選單 
 //		List<membershipInformationBean>  getIdentificationList();
 

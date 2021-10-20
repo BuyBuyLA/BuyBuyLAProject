@@ -22,14 +22,18 @@ public class RootAppConfig {
 	    public DataSource dataSource() {
 	        ComboPooledDataSource ds = new ComboPooledDataSource();
 	        ds.setUser("sa");
+<<<<<<< HEAD
 	        ds.setPassword("123123123");
+=======
+	        ds.setPassword("zxcv265358");
+>>>>>>> branch 'Dev_MVC3' of git@github.com:BuyBuyLA/BuyBuyLAProject.git
 	        try {
 	            ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	        } catch (PropertyVetoException e) {
 	            e.printStackTrace();
 	        }
 //	        ds.setJdbcUrl("jdbc:sqlserver://MSI\\SQLEXPRESS:1433;databaseName=BuyBuyLa");
-	        ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=BuyBuyLa");
+	        ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=shopping");
 	        ds.setInitialPoolSize(4);
 	        ds.setMaxPoolSize(8);
 	        return ds;

@@ -111,15 +111,16 @@ form {
 				<br>
 
 			</tr>
-            <tr>     
-				 <td></td>    <!--      下拉選單身分別 -->
-				<!-- <input class="formElem" type="Password" name="Password" id="idPwd"
-					size="30" placeholder="Password"> -->
+			
+			<!--      下拉選單身分別 -->
+        <!--    <tr>     
+				 <td></td>    
+				<label type="hidden">
                     <form:input id="Identification" path="Identification" type='text'
-                    class='form:input-large' />
+                    class='form:input-large'  /> </label>
 				<br><br><br>
 
-			</tr>
+			</tr>   --> 
 
 			
 
